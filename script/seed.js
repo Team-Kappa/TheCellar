@@ -1,18 +1,88 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Product} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      username: 'Matt',
+      email: 'mattwine@gmail.com',
+      password: 'winewine',
+      cartItems: [],
+      admin: true
+    }),
+    User.create({
+      username: 'Jonathan',
+      email: 'jonathanwine@gmail.com',
+      password: 'winewine',
+      cartItems: [],
+      admin: true
+    }),
+    User.create({
+      username: 'Eun',
+      email: 'eunwine@gmail.com',
+      password: 'winewine',
+      cartItems: [],
+      admin: true
+    }),
+    User.create({
+      username: 'Calvin',
+      email: 'calvinwine@gmail.com',
+      password: 'winewine',
+      cartItems: [],
+      admin: true
+    })
+  ])
+
+  const products = await Promise.all([
+    Product.create({
+      name: 'Red Wine',
+      price: 19.99,
+      year: 2000,
+      origin: 'New Jersey',
+      description: 'This is a red wine. Enjoy it while you can',
+      type: 'red'
+    }),
+    Product.create({
+      name: 'White Wine',
+      price: 9.99,
+      year: 2010,
+      origin: 'Napa Valley',
+      description: 'This is a white wine. Enjoy it while you can',
+      type: 'white'
+    }),
+    Product.create({
+      name: 'Sparkling Wine',
+      price: 29.99,
+      year: 1800,
+      origin: 'Italy',
+      description: 'This is a sparkling wine. Enjoy it while you can',
+      type: 'sparkling'
+    }),
+    Product.create({
+      name: 'Orange Wine',
+      price: 39.99,
+      year: 2001,
+      origin: 'California',
+      description: 'This is a orange wine. Enjoy it while you can',
+      type: 'orange'
+    }),
+    Product.create({
+      name: 'Neon Wine',
+      price: 199.99,
+      year: 2002,
+      origin: 'New York',
+      description: 'This is a neon wine. Enjoy it while you can',
+      type: 'neon'
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${products.length} products`)
   console.log(`seeded successfully`)
 }
 
