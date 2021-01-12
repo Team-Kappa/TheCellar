@@ -4,8 +4,6 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_WINE = 'GET_WINE'
-const GET_SINGLEWINE = 'GET_SINGLEWINE'
 const SET_WINE = 'SET_WINE'
 const SET_SINGLEWINE = 'SET_SINGLEWINE'
 /**
