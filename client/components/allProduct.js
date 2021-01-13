@@ -17,21 +17,26 @@ export class AllProduct extends React.Component {
 
     return (
       <div>
-        <h1>All Wines Page</h1>
+        <img
+          className="All_Top_Image"
+          src="https://d84potgbojizh.cloudfront.net/wp-content/uploads/2019/09/Ultimate-Guide-to-Host-Best-Wine-Cheese-Party-Hero.png"
+        />
 
-        <button type="button">Red</button>
-        <button type="button">White</button>
-        <button type="button">Sparkling</button>
-        <button type="button">Orange</button>
-        <button type="button">Neon</button>
+        <h1>OUR WINES</h1>
+        <div className="All_button_container">
+          <button type="button">Red</button>
+          <button type="button">White</button>
+          <button type="button">Sparkling</button>
+          <button type="button">Orange</button>
+          <button type="button">Neon</button>
+        </div>
 
-        <div className="wines-list">
-          <h2>List of wines here</h2>
+        <div className="All_Container">
           {wines.map(wine => {
             return (
               <div key={wine.id}>
-                <img style={{height: 100}} src={wine.imageUrl} />
                 <Link to={`/wines/${wine.id}`}>
+                  <img className="All_Wine_Image" src={wine.imageUrl} />
                   <h2>{wine.name}</h2>
                 </Link>
               </div>
