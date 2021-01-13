@@ -8,7 +8,7 @@ const SET_SINGLEWINE = 'SET_SINGLEWINE'
 /**
  * INITIAL STATE
  */
-const defaultWine = {}
+const defaultWine = []
 
 /**
  * ACTION CREATORS
