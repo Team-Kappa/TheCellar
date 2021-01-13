@@ -1,11 +1,25 @@
-import React, {useState} from 'react'
-import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchSingleWines} from '../store/product'
 
 function SingleWine(props) {
-  const {price, type, origin, description} = props
-  console.log('props-->', props)
+  const singleWine = useSelector(
+    state => (state.product.singleWine ? state.product.singleWine : {})
+  )
+  const {name, price, type, year, origin, description} = singleWine
+  console.log('single wine -->', singleWine)
+  // console.log('props-->', props)
+  const wineId = props.match.params.wineId
+  const dispatch = useDispatch()
+  useEffect(
+    () => {
+      dispatch(fetchSingleWines(wineId))
+    },
+    [dispatch]
+  )
+
+  //console.log('single wine -->', singleWine)
   //STATE
   const [count, setCount] = useState(0)
   const [total, setTotal] = useState(0)
@@ -30,11 +44,12 @@ function SingleWine(props) {
 
       {/* Wine description card */}
       <div className="singleWineCard">
-        <h1>Wine Name</h1>
+        <h1>{name}</h1>
         <ul>
-          <li>Price: {`$ ${price}`}</li>
+          <li>Price: {price} </li>
           <li>Type: {type}</li>
-          <li>Origin:{origin}</li>
+          <li>Origin: {origin}</li>
+          <li>Year: {year}</li>
           <li>Description:{description}</li>
         </ul>
       </div>
@@ -57,20 +72,21 @@ function SingleWine(props) {
         {/* if(count>0){
             total += price * count}
             else {return null} */}
-        <p>{`Total: $ ${total}`}</p>
+        <p>Total: $</p>
       </div>
     </div>
   )
 }
 // WAITING FOR REDUX STORE
-const mapStateToProps = state => {
-  return {
-    singleWine: state.product.singleWine
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    getSingleWine: id => dispatch(fetchSingleWines(id))
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(SingleWine)
+// const mapStateToProps = (state) => {
+//   return {
+//     singleWine: state.product,
+//   }
+// }
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchSingleWines: (id) => dispatch(fetchSingleWines(id)),
+//   }
+// }
+
+export default SingleWine
