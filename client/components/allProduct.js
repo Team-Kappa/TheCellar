@@ -25,14 +25,14 @@ export class AllProduct extends React.Component {
 
         <div className="wines-list">
           <h2>List of wines here</h2>
-          {/* {wines.map((wine) => {
+          {wines.map(wine => {
             return (
               <div key={wine.id}>
                 <img src={wine.imageUrl} />
                 <h2>{wine.name}</h2>
               </div>
             )
-          })} */}
+          })}
         </div>
       </div>
     )
