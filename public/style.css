@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: sans-serif;
 }
 
@@ -18,4 +18,93 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+} */
+/* Navbar */
+* {
+  margin: 0;
 }
+
+.navbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background-color: #722620;
+  position: sticky;
+  text-decoration: none;
+  top: 0;
+  z-index: 100;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-bottom: 3px solid black;
+}
+
+.navbarLogo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 10px;
+  margin-top: 0px;
+}
+
+.headerNav {
+  align-content: flex-end;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.headerProfile,
+.headerCart > .MuiSvgIcon-root {
+  cursor: pointer;
+}
+
+.headerCart > .MuiSvgIcon-root:hover {
+  color: Black;
+}
+
+.headerProfile > .MuiSvgIcon-root:hover {
+  color: Black;
+}
+
+.headerOption {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  align-content: flex-end;
+}
+
+.headerCart {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.headerProfile {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.headerCartCount {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.headerOptionLineOne {
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.headerOption > span:hover {
+  color: black;
+}
+
+.headerOption > span:hover {
+  cursor: pointer;
+}
+/* Navbar */
