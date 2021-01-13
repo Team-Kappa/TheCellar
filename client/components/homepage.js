@@ -14,7 +14,7 @@ export class Homepage extends React.Component {
   render() {
     return (
       <div>
-        <h3>Hello World</h3>
+        <h1>Hello World</h1>
       </div>
     )
   }
