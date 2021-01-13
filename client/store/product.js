@@ -50,9 +50,9 @@ export const fetchSingleWines = id => async dispatch => {
 export default function(state = defaultWine, action) {
   switch (action.type) {
     case SET_WINE:
-      return action.wines
+      return {...state, wines: action.wines}
     case SET_SINGLEWINE:
-      return action.singleWine
+      return {...state, singleWine: action.singleWine}
     default:
       return state
   }
