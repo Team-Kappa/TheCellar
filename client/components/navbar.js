@@ -17,7 +17,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     </Link>
 
     <div className="headerNav">
-      <Link to="/AllWines">
+      <Link to="/wines">
         <div className="headerOption">
           <span className="headerOptionLineOne">Wine</span>
         </div>

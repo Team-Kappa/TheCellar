@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <Navbar />
 
-      {/* <Routes /> */}
+      <Routes />
     </div>
   )
 }
