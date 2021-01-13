@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {logout} from '../store/user'
 
 /**
  * COMPONENT
@@ -11,6 +13,10 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
+
+      <button type="button" onClick={() => props.logout()}>
+        Click
+      </button>
     </div>
   )
 }
@@ -23,8 +29,13 @@ const mapState = state => {
     email: state.user.email
   }
 }
+const mapDispatch = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
 
-export default connect(mapState)(UserHome)
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
