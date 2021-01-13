@@ -8,8 +8,7 @@ function SingleWine(props) {
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
   const {name, price, type, year, origin, description} = singleWine
-  console.log('single wine -->', singleWine)
-  // console.log('props-->', props)
+
   const wineId = props.match.params.wineId
   const dispatch = useDispatch()
   useEffect(
@@ -19,7 +18,6 @@ function SingleWine(props) {
     [dispatch]
   )
 
-  //console.log('single wine -->', singleWine)
   //STATE
   const [count, setCount] = useState(0)
   const [total, setTotal] = useState(0)
