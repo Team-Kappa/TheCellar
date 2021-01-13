@@ -16,19 +16,20 @@ export class AllProduct extends React.Component {
     return (
       <div>
         <h1>All Wines Page</h1>
+        <div className="All_button_container">
+          <button type="button">Red</button>
+          <button type="button">White</button>
+          <button type="button">Sparkling</button>
+          <button type="button">Orange</button>
+          <button type="button">Neon</button>
+        </div>
 
-        <button type="button">Red</button>
-        <button type="button">White</button>
-        <button type="button">Sparkling</button>
-        <button type="button">Orange</button>
-        <button type="button">Neon</button>
-
-        <div className="wines-list">
-          <h2>List of wines here</h2>
+        <h2>List of wines here</h2>
+        <div className="All_Container">
           {wines.map(wine => {
             return (
               <div key={wine.id}>
-                <img src={wine.imageUrl} />
+                <img className="All_Image" src={wine.imageUrl} />
                 <h2>{wine.name}</h2>
               </div>
             )
