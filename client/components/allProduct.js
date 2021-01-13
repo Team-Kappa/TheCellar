@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchWines} from '../store/product'
+import {Link} from 'react-router-dom'
 
 export class AllProduct extends React.Component {
   componentDidMount() {
@@ -8,10 +9,11 @@ export class AllProduct extends React.Component {
   }
 
   render() {
-    const wines = this.props.product
+    const wines = this.props.wines ? this.props.wines : []
+
     console.log('this.props ->', this.props)
     // console.log('this.props --->', this.props)
-    console.log('wines ===>', wines)
+    // console.log('wines ===>', wines)
 
     return (
       <div>
@@ -28,8 +30,10 @@ export class AllProduct extends React.Component {
           {wines.map(wine => {
             return (
               <div key={wine.id}>
-                <img src={wine.imageUrl} />
-                <h2>{wine.name}</h2>
+                <img style={{height: 100}} src={wine.imageUrl} />
+                <Link to={`/wines/${wine.id}`}>
+                  <h2>{wine.name}</h2>
+                </Link>
               </div>
             )
           })}
@@ -40,8 +44,9 @@ export class AllProduct extends React.Component {
 }
 
 const mapState = state => {
+  console.log('map state-->', state)
   return {
-    product: state.product
+    wines: state.product.wines
   }
 }
 
