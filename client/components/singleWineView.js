@@ -23,15 +23,18 @@ function SingleWine(props) {
   //STATE
   const [count, setCount] = useState(0)
   const [total, setTotal] = useState(0)
-
+  // COME BACK TO FIX TOTAL
   const handleIncrement = () => {
     setCount(prevCount => prevCount + 1)
+    setTotal(prevTotal => prevTotal + Number(price))
   }
+  // COME BACK TO FIX TOTAL
   const handleDecrement = () => {
     if (count === 0) {
       return 0
     } else {
       setCount(prevCount => prevCount - 1)
+      setTotal(prevTotal => prevTotal - Number(price))
     }
   }
   return (
@@ -69,24 +72,11 @@ function SingleWine(props) {
 
         {/* PRICE */}
 
-        {/* if(count>0){
-            total += price * count}
-            else {return null} */}
-        <p>Total: $</p>
+        {/* COME BACK TO FIX TOTAL CONVERSION */}
+        <p>Total: $ {Number.parseFloat(total)}</p>
       </div>
     </div>
   )
 }
-// WAITING FOR REDUX STORE
-// const mapStateToProps = (state) => {
-//   return {
-//     singleWine: state.product,
-//   }
-// }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchSingleWines: (id) => dispatch(fetchSingleWines(id)),
-//   }
-// }
 
 export default SingleWine
