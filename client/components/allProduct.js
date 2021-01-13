@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchWines} from '../store/product'
+import {Link} from 'react-router-dom'
 
 export class AllProduct extends React.Component {
   componentDidMount() {
@@ -8,28 +9,36 @@ export class AllProduct extends React.Component {
   }
 
   render() {
-    const wines = this.props.product
+    const wines = this.props.wines ? this.props.wines : []
+
     console.log('this.props ->', this.props)
     // console.log('this.props --->', this.props)
-    console.log('wines ===>', wines)
+    // console.log('wines ===>', wines)
 
     return (
       <div>
-        <h1>All Wines Page</h1>
+        <img
+          className="All_Top_Image"
+          src="https://d84potgbojizh.cloudfront.net/wp-content/uploads/2019/09/Ultimate-Guide-to-Host-Best-Wine-Cheese-Party-Hero.png"
+        />
 
-        <button type="button">Red</button>
-        <button type="button">White</button>
-        <button type="button">Sparkling</button>
-        <button type="button">Orange</button>
-        <button type="button">Neon</button>
+        <h1>OUR WINES</h1>
+        <div className="All_button_container">
+          <button type="button">Red</button>
+          <button type="button">White</button>
+          <button type="button">Sparkling</button>
+          <button type="button">Orange</button>
+          <button type="button">Neon</button>
+        </div>
 
-        <div className="wines-list">
-          <h2>List of wines here</h2>
+        <div className="All_Container">
           {wines.map(wine => {
             return (
               <div key={wine.id}>
-                <img src={wine.imageUrl} />
-                <h2>{wine.name}</h2>
+                <Link to={`/wines/${wine.id}`}>
+                  <img className="All_Wine_Image" src={wine.imageUrl} />
+                  <h2>{wine.name}</h2>
+                </Link>
               </div>
             )
           })}
@@ -40,8 +49,9 @@ export class AllProduct extends React.Component {
 }
 
 const mapState = state => {
+  console.log('map state-->', state)
   return {
-    product: state.product
+    wines: state.product.wines
   }
 }
 
