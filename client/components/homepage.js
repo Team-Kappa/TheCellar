@@ -6,15 +6,23 @@ import {fetchWines, fetchSingleWines} from '../store/product'
  * COMPONENT
  */
 export class Homepage extends React.Component {
-  componentDidMount() {
-    console.log('heloo')
-    this.props.getWines()
-    this.props.getSingleWine(1)
-  }
   render() {
     return (
-      <div>
-        <h1>Hello World</h1>
+      <div className="HPContainer">
+        <div className="HP_title_container">
+          <h1>Wine Shopper</h1>
+        </div>
+        <div className="HP_description_container">
+          <div className="HP_Image">
+            <img src="/images/Wine_logo2.png" />
+          </div>
+          <div className="HP_description">
+            <p>
+              Wine and more. Come and choose from a selection of high class
+              wines meant to excite your taste buds.{' '}
+            </p>
+          </div>
+        </div>
       </div>
     )
   }
