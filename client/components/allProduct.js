@@ -11,10 +11,6 @@ export class AllProduct extends React.Component {
   render() {
     const wines = this.props.wines ? this.props.wines : []
 
-    console.log('this.props ->', this.props)
-    // console.log('this.props --->', this.props)
-    // console.log('wines ===>', wines)
-
     return (
       <div>
         <img
