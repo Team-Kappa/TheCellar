@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {SignUp} from './signUp'
+import TextField from '@material-ui/core/TextField'
 
 /**
  * COMPONENT
@@ -19,6 +21,12 @@ const AuthForm = props => {
           <input name="email" type="text" />
         </div>
         <div>
+          <div>
+            <label htmlFor="username">
+              <small>Username</small>
+            </label>
+            <input name="username" type="text" />
+          </div>
           <label htmlFor="password">
             <small>Password</small>
           </label>
