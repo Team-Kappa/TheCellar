@@ -29,7 +29,7 @@ const Product = db.define('product', {
   },
 
   type: {
-    type: Sequelize.ENUM('red', 'white', 'sparkling', 'orange', 'neon')
+    type: Sequelize.ENUM('Reds', 'Whites', 'Sparkling', 'Rose', 'Fruit')
   },
 
   imageUrl: {

@@ -5,6 +5,12 @@ const db = require('../db')
 User.belongsToMany(Product, {through: 'ProjectX'})
 Product.belongsToMany(User, {through: 'ProjectX'})
 
+//one to many relationship between order and user
+//many to many relationhip between product and order == order details
+
+//refund? - refer back to the order number
+//multiple order on one product
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
