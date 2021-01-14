@@ -52,7 +52,7 @@ function SingleWine(props) {
           <div className="wine_info">
             <h1>{name}</h1>
             <ul>
-              <li>Price: {price} </li>
+              <li>Price: $ {price / 100} </li>
               <li>Type: {type}</li>
               <li>Origin: {origin}</li>
               <li>Year: {year}</li>
@@ -78,7 +78,7 @@ function SingleWine(props) {
           {/* PRICE */}
 
           {/* COME BACK TO FIX TOTAL CONVERSION */}
-          <p>Total: $ {Math.round(total)}</p>
+          <p>Total: $ {total / 100}</p>
         </div>
       </div>
     </div>
