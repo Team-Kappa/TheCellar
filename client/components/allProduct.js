@@ -2,42 +2,78 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchWines} from '../store/product'
 import {Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 export class AllProduct extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      wineData: []
+    }
+  }
+
   componentDidMount() {
     this.props.getWines()
   }
 
+  wineButtonClickHandler = (buttonName, rawWineData) => {
+    const filteredWineData = rawWineData.filter(
+      wineData => wineData.type.toUpperCase() === buttonName
+    )
+
+    this.setState({
+      wineData: filteredWineData
+    })
+  }
+
+  displayWines = wineData => {
+    return wineData.map(wine => {
+      return (
+        <div key={wine.id}>
+          <Link to={`/wines/${wine.id}`}>
+            <img className="All_Wine_Image" src={wine.imageUrl} />
+            <h3 className="All_WineName">{wine.name}</h3>
+          </Link>
+        </div>
+      )
+    })
+  }
+
   render() {
     const wines = this.props.wines ? this.props.wines : []
+    const buttonNames = ['ALL', 'REDS', 'WHITES', 'SPARKLING', 'ROSE', 'FRUIT']
+
+    if (wines.length > 0 && this.state.wineData.length === 0) {
+      this.setState({
+        wineData: wines
+      })
+    }
 
     return (
       <div>
         <img
           className="All_Top_Image"
           src="https://d84potgbojizh.cloudfront.net/wp-content/uploads/2019/09/Ultimate-Guide-to-Host-Best-Wine-Cheese-Party-Hero.png"
+          alt="Null"
         />
 
-        <h1>OUR WINES</h1>
-        <div className="All_button_container">
-          <button type="button">Red</button>
-          <button type="button">White</button>
-          <button type="button">Sparkling</button>
-          <button type="button">Orange</button>
-          <button type="button">Neon</button>
+        <h1 className="All_Title">OUR WINES</h1>
+        <div className="All_Button">
+          {buttonNames.map(singleButton => {
+            return (
+              <Button
+                size="large"
+                onClick={() => this.wineButtonClickHandler(singleButton, wines)}
+                key={`${singleButton}`}
+              >
+                {singleButton}
+              </Button>
+            )
+          })}
         </div>
 
         <div className="All_Container">
-          {wines.map(wine => {
-            return (
-              <div key={wine.id}>
-                <Link to={`/wines/${wine.id}`}>
-                  <img className="All_Wine_Image" src={wine.imageUrl} />
-                  <h2>{wine.name}</h2>
-                </Link>
-              </div>
-            )
-          })}
+          {this.displayWines(this.state.wineData)}
         </div>
       </div>
     )
@@ -45,7 +81,6 @@ export class AllProduct extends React.Component {
 }
 
 const mapState = state => {
-  console.log('map state-->', state)
   return {
     wines: state.product.wines
   }

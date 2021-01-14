@@ -45,7 +45,23 @@ async function seed() {
       year: 2000,
       origin: 'New Jersey',
       description: 'This is a red wine. Enjoy it while you can',
-      type: 'red'
+      type: 'Reds'
+    }),
+    Product.create({
+      name: 'Bloody Red Wine',
+      price: 9.99,
+      year: 2001,
+      origin: 'New Jersey',
+      description: 'This is a red wine. Enjoy it while you can',
+      type: 'Reds'
+    }),
+    Product.create({
+      name: 'Really Red Wine',
+      price: 17.99,
+      year: 2003,
+      origin: 'New Jersey',
+      description: 'This is a red wine. Enjoy it while you can',
+      type: 'Reds'
     }),
     Product.create({
       name: 'White Wine',
@@ -53,31 +69,95 @@ async function seed() {
       year: 2010,
       origin: 'Napa Valley',
       description: 'This is a white wine. Enjoy it while you can',
-      type: 'white'
+      type: 'Whites'
     }),
     Product.create({
-      name: 'Sparkling Wine',
+      name: 'White Cell Wine',
       price: 29.99,
+      year: 2012,
+      origin: 'Napa Valley',
+      description: 'This is a white wine. Enjoy it while you can',
+      type: 'Whites'
+    }),
+    Product.create({
+      name: 'Pure White Wine',
+      price: 29.99,
+      year: 2015,
+      origin: 'Napa Valley',
+      description: 'This is a white wine. Enjoy it while you can',
+      type: 'Whites'
+    }),
+    Product.create({
+      name: 'Super Sparkling Wine',
+      price: 2999.99,
       year: 1800,
       origin: 'Italy',
       description: 'This is a sparkling wine. Enjoy it while you can',
-      type: 'sparkling'
+      type: 'Sparkling'
+    }),
+    Product.create({
+      name: 'Sparkling Wine',
+      price: 299.99,
+      year: 1900,
+      origin: 'Italy',
+      description: 'This is a sparkling wine. Enjoy it while you can',
+      type: 'Sparkling'
+    }),
+    Product.create({
+      name: 'Just Sparkling Wine',
+      price: 29.99,
+      year: 1890,
+      origin: 'Italy',
+      description: 'This is a sparkling wine. Enjoy it while you can',
+      type: 'Sparkling'
     }),
     Product.create({
       name: 'Orange Wine',
       price: 39.99,
       year: 2001,
       origin: 'California',
-      description: 'This is a orange wine. Enjoy it while you can',
-      type: 'orange'
+      description: 'This is a orange flavored wine. Enjoy it while you can',
+      type: 'Fruit'
     }),
     Product.create({
-      name: 'Neon Wine',
+      name: 'Blueberry Wine',
+      price: 19.99,
+      year: 2020,
+      origin: 'California',
+      description: 'This is a blueberry flavored wine. Enjoy it while you can',
+      type: 'Fruit'
+    }),
+    Product.create({
+      name: 'Strawberry Wine',
+      price: 29.99,
+      year: 2021,
+      origin: 'California',
+      description: 'This is a strawberry flavored wine. Enjoy it while you can',
+      type: 'Fruit'
+    }),
+    Product.create({
+      name: 'Rose Wine',
       price: 199.99,
-      year: 2002,
+      year: 2008,
       origin: 'New York',
-      description: 'This is a neon wine. Enjoy it while you can',
-      type: 'neon'
+      description: 'This is a rose wine. Enjoy it while you can',
+      type: 'Rose'
+    }),
+    Product.create({
+      name: 'Pink Rose Wine',
+      price: 19.99,
+      year: 2003,
+      origin: 'New York',
+      description: 'This is a rose wine. Enjoy it while you can',
+      type: 'Rose'
+    }),
+    Product.create({
+      name: 'Floral Rose Wine',
+      price: 99.99,
+      year: 2012,
+      origin: 'New York',
+      description: 'This is a rose wine. Enjoy it while you can',
+      type: 'Rose'
     })
   ])
 
