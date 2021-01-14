@@ -169,3 +169,55 @@ html {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+/* SINGLE WINE VIEW */
+
+.singleWineContainer {
+  padding: 5rem 15%;
+}
+
+.single_backBTN {
+  padding-top: 50px;
+  padding-left: 10%;
+}
+
+.singleWineCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 5%;
+}
+.wine_image {
+  justify-content: center;
+  height: 15%;
+  align-items: center;
+}
+.wine_image > img {
+  display: block;
+  width: auto;
+  max-height: 71rem;
+  max-width: 80%;
+}
+/* .singleWineCard > h1 {
+  text-align: center;
+} */
+.wine_info {
+}
+
+.wine_info > ul {
+  list-style-type: none;
+}
+
+.wine_info > p {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+}
+.quantity {
+  width: 200px;
+  border: black 1px solid;
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+  margin-bottom: 65px;
+}
