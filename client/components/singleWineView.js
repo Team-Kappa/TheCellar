@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchSingleWines} from '../store/product'
+import Button from '@material-ui/core/Button'
 
 function SingleWine(props) {
   const singleWine = useSelector(
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
   const {name, price, type, year, origin, description} = singleWine
-  console.log('single wine -->', singleWine)
-  // console.log('props-->', props)
+
   const wineId = props.match.params.wineId
   const dispatch = useDispatch()
   useEffect(
@@ -19,7 +19,6 @@ function SingleWine(props) {
     [dispatch]
   )
 
-  //console.log('single wine -->', singleWine)
   //STATE
   const [count, setCount] = useState(0)
   const [total, setTotal] = useState(0)
@@ -38,42 +37,49 @@ function SingleWine(props) {
     }
   }
   return (
-    <div className="singleWineContainer">
-      <Link to="/home">
-        <button type="button">Go back to home page</button>
-      </Link>
-
-      <img style={{height: 400}} src="/images/defaultwine.png" />
-
-      {/* Wine description card */}
-      <div className="singleWineCard">
-        <h1>{name}</h1>
-        <ul>
-          <li>Price: {price} </li>
-          <li>Type: {type}</li>
-          <li>Origin: {origin}</li>
-          <li>Year: {year}</li>
-          <li>Description:{description}</li>
-        </ul>
+    <div>
+      <div className="single_backBTN">
+        <Link to="/wines">
+          <button type="button">Go back</button>
+        </Link>
       </div>
+      <div className="singleWineContainer">
+        {/* Wine description card */}
+        <div className="singleWineCard">
+          <div className="wine_image">
+            <img src="/images/defaultwine.png" />
+          </div>
+          <div className="wine_info">
+            <h1>{name}</h1>
+            <ul>
+              <li>Price: {price} </li>
+              <li>Type: {type}</li>
+              <li>Origin: {origin}</li>
+              <li>Year: {year}</li>
+              <li>Description:{description}</li>
+            </ul>
+            {/* QUANTITY BUTTON */}
+            <div className="quantity">
+              <button type="button" onClick={handleDecrement}>
+                -
+              </button>
+              <h1>{count}</h1>
+              <button type="button" onClick={handleIncrement}>
+                +
+              </button>
 
-      {/* QUANTITY BUTTON */}
-      <div className="quantity">
-        <button type="button" onClick={handleDecrement}>
-          -
-        </button>
-        <h1>{count}</h1>
-        <button type="button" onClick={handleIncrement}>
-          +
-        </button>
+              {/* ADD TO CART BUTTON */}
+              <Button variant="contained" color="primary">
+                Add to cart
+              </Button>
+            </div>
+          </div>
 
-        {/* ADD TO CART BUTTON */}
-        <button type="submit">Add to cart</button>
+          {/* PRICE */}
 
-        {/* PRICE */}
-
-        {/* COME BACK TO FIX TOTAL CONVERSION */}
-        <p>Total: $ {Number.parseFloat(total)}</p>
+          {/* COME BACK TO FIX TOTAL CONVERSION */}
+          <p>Total: $ {Math.round(total)}</p>
+        </div>
       </div>
     </div>
   )

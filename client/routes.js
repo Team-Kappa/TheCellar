@@ -2,8 +2,15 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Homepage, AllProduct} from './components'
-import SingleWine from './components/singleWineView'
+import {
+  Login,
+  Signup,
+  UserHome,
+  Homepage,
+  AllProduct,
+  SingleWine,
+  SignUp
+} from './components'
 import {me} from './store'
 
 /**
