@@ -1,9 +1,16 @@
 const User = require('./user')
 const Product = require('./product')
+const Order = require('./order')
+const OrderDetails = require('./orderDetails')
 const db = require('../db')
 
-User.belongsToMany(Product, {through: 'ProjectX'})
-Product.belongsToMany(User, {through: 'ProjectX'})
+//ONE-TO-ONE
+User.belongsTo(Order)
+Order.hasOne(User)
+
+//MANY-TO-MANY
+Order.belongsToMany(Product, {through: 'orderDetails'})
+Product.belongsToMany(Order, {through: 'orderDetails'})
 
 //one to many relationship between order and user
 //many to many relationhip between product and order == order details
@@ -26,5 +33,7 @@ Product.belongsToMany(User, {through: 'ProjectX'})
  */
 module.exports = {
   User,
-  Product
+  Product,
+  Order,
+  OrderDetails
 }
