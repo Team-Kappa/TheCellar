@@ -145,27 +145,95 @@ html {
 
 /* All Product Page Styling */
 .All_Container {
-  display: flex;
   justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 400px;
+  margin-right: 400px;
 }
 
 .All_Wine_Image {
   height: 400px;
-  display: flex;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 100px;
 }
 
 .All_Top_Image {
   display: flex;
   justify-content: center;
-  width: 1800px;
+  height: auto;
+  width: 100%;
 }
 
-.All_button_container {
+.All_Title {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 500%;
+  font-family: Apple Chancery, cursive;
+}
+
+.All_Button {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 50px;
+}
+
+.All_WineName {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Helvetica, sans-serif;
+  font-size: 100%;
+}
+
+/* SINGLE WINE VIEW */
+
+.singleWineContainer {
+  padding: 5rem 15%;
+}
+
+.single_backBTN {
+  padding-top: 50px;
+  padding-left: 10%;
+}
+
+.singleWineCard {
   display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 5%;
+}
+.wine_image {
   justify-content: center;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 15%;
+  align-items: center;
+}
+.wine_image > img {
+  display: block;
+  width: auto;
+  max-height: 71rem;
+  max-width: 80%;
+}
+/* .singleWineCard > h1 {
+  text-align: center;
+} */
+.wine_info {
+}
+
+.wine_info > ul {
+  list-style-type: none;
+}
+
+.wine_info > p {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+}
+.quantity {
+  width: 200px;
+  border: black 1px solid;
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+  margin-bottom: 65px;
 }
