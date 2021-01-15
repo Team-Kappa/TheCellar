@@ -24,7 +24,7 @@ form > div {
 } */
 /* Navbar */
 html {
-  background-color: #ffa781;
+  background-color: #fcb89b;
 }
 * {
   margin: 0;
@@ -116,7 +116,7 @@ html {
 /* Navbar */
 /* Homepage CSS */
 .HPContainer {
-  background-color: #ffa781;
+  background-color: #fcb89b;
   color: #5b0e2d;
   font-family: 'Lobster Two', cursive;
 }
@@ -144,19 +144,30 @@ html {
 }
 
 /* All Product Page Styling */
+hr {
+  width: 900px;
+  border: 1px solid black;
+  margin-top: 40px;
+}
+
+.All_Horizontal {
+  display: flex;
+  justify-content: center;
+}
+
 .All_Container {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 400px;
-  margin-right: 400px;
+  margin-left: 350px;
+  margin-right: 350px;
 }
 
 .All_Wine_Image {
   height: 400px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 100px;
+  margin-left: 75px;
+  margin-right: 75px;
+  margin-top: 30px;
 }
 
 .All_Top_Image {
@@ -168,7 +179,7 @@ html {
 
 .All_Title {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
   font-size: 500%;
   font-family: Apple Chancery, cursive;
 }
@@ -176,7 +187,7 @@ html {
 .All_Button {
   text-align: center;
   font-size: 120%;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .All_WineName {
@@ -184,6 +195,8 @@ html {
   text-transform: uppercase;
   font-family: Helvetica, sans-serif;
   font-size: 100%;
+  margin-top: 10%;
+  margin-bottom: 20%;
 }
 
 /* SINGLE WINE VIEW */
@@ -236,4 +249,46 @@ html {
   align-items: center;
   margin-top: 35px;
   margin-bottom: 65px;
+}
+
+/* CONTACT US */
+.contact-main {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 5rem;
+}
+.contact-main > h1 {
+  text-align: center;
+  font-size: 500%;
+  font-family: Apple Chancery, cursive;
+}
+.contact-main > img {
+  width: 100%;
+  height: 453px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  /* padding: 2rem 15%; */
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  padding: 5%;
+}
+
+.contact-call,
+.email {
+  border: 1px black solid;
+  margin: 5vh;
+  padding: 5vh;
+  text-align: center;
+  height: 10rem;
+  width: 20rem;
 }

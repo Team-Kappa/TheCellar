@@ -19,7 +19,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/Contact">
+      <Link to="/contact">
         <div className="headerOption">
           <span className="headerOptionLineOne">Contact</span>
         </div>
