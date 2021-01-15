@@ -1,3 +1,8 @@
+/* 2 color Combo
+Maroon - #5b0e2d
+Peach - #ffa781
+*/
+
 /* Navbar */
 html {
   background-color: #ffa781;
@@ -90,34 +95,6 @@ html {
   cursor: pointer;
 }
 /* Navbar */
-/* Homepage CSS */
-.HPContainer {
-  background-color: #ffa781;
-  color: #5b0e2d;
-  font-family: 'Lobster Two', cursive;
-}
-.HP_title_container {
-  display: flex;
-  justify-content: center;
-}
-
-.HP_description_container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-.HP_Image {
-  margin: auto;
-}
-.HP_Image > img {
-  width: 120px;
-}
-
-.HP_description {
-  margin: auto;
-  flex-basis: 20vh;
-}
 
 /* All Product Page Styling */
 .All_Container {
