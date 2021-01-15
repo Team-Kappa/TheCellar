@@ -250,3 +250,45 @@ hr {
   margin-top: 35px;
   margin-bottom: 65px;
 }
+
+/* CONTACT US */
+.contact-main {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 5rem;
+}
+.contact-main > h1 {
+  text-align: center;
+  font-size: 500%;
+  font-family: Apple Chancery, cursive;
+}
+.contact-main > img {
+  width: 100%;
+  height: 453px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  /* padding: 2rem 15%; */
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  padding: 5%;
+}
+
+.contact-call,
+.email {
+  border: 1px black solid;
+  margin: 5vh;
+  padding: 5vh;
+  text-align: center;
+  height: 10rem;
+  width: 20rem;
+}
