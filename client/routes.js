@@ -10,6 +10,7 @@ import {
   AllProduct,
   SingleWine,
   SignUp,
+  Checkout,
   ContactUs
 } from './components'
 import {me} from './store'
@@ -28,6 +29,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/wines" component={AllProduct} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/" component={Homepage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
