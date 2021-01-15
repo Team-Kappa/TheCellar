@@ -9,7 +9,9 @@ import {
   Homepage,
   AllProduct,
   SingleWine,
-  SignUp
+  SignUp,
+  Checkout,
+  ContactUs
 } from './components'
 import {me} from './store'
 
@@ -27,11 +29,13 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/wines" component={AllProduct} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/" component={Homepage} />
         <Route exact path="/login" component={Login} />
 
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/wines/:wineId" component={SingleWine} />
+        <Route exact path="/contact" component={ContactUs} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

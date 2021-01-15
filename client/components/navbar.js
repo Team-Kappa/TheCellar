@@ -9,11 +9,7 @@ import PersonIcon from '@material-ui/icons/Person'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navbar">
     <Link to="/">
-      <img
-        className="navbarLogo"
-        src="https://lh3.googleusercontent.com/proxy/KinKtJYZgKHCHrGmNAM9zlbKxS-GvK6GV2_0n6OS6uATd_R6YEwVj3LAkd7HgxZcrq6xzDNtjotty_pQskBHfFIqlz5Sr5Z-ca_v_-s-SSGo1Ggj1PfqRWoIsfeVa0BKCw"
-        alt=""
-      />
+      <img className="navbarLogo" src="/images/Wine_logo2.png" alt="" />
     </Link>
 
     <div className="headerNav">
@@ -23,7 +19,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/Contact">
+      <Link to="/contact">
         <div className="headerOption">
           <span className="headerOptionLineOne">Contact</span>
         </div>
@@ -35,7 +31,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/Checkout">
+      <Link to="/checkout">
         <div className="headerCart">
           <ShoppingCartIcon />
           <span className="headerOptionLineTwo headerCartCount">0</span>
