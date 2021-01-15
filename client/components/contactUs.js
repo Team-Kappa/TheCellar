@@ -8,7 +8,7 @@ function ContactUs() {
   return (
     <div className="contact-main">
       <img src="/images/winery.jpeg" />
-      <Link to="/home">
+      <Link style={{textDecoration: 'none'}} to="/">
         <Button> Go back to home</Button>
       </Link>
       <h1>Contact us</h1>
@@ -18,7 +18,7 @@ function ContactUs() {
             <PhoneInTalkTwoToneIcon />
             <h2>Call us:</h2>
             <div className="call-icon" />
-            <h3>1-800-GRA-PESS</h3>
+            <h3>1-800-624-9322</h3>
             <h3>Mon-Fri: 7am to 6pm (EST)</h3>
           </div>
 
@@ -26,7 +26,7 @@ function ContactUs() {
             <EmailTwoToneIcon />
             <h2>Email us:</h2>
             <div className="email-icon" />
-            <h3>WineShopper@grapesrus.com</h3>
+            <h3>WineShopper@grapesRus.com</h3>
           </div>
         </div>
 
