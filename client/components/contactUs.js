@@ -7,6 +7,7 @@ import EmailTwoToneIcon from '@material-ui/icons/EmailTwoTone'
 function ContactUs() {
   return (
     <div className="contact-main">
+      <img src="/images/winery.jpeg" />
       <Link to="/home">
         <Button> Go back to home</Button>
       </Link>
