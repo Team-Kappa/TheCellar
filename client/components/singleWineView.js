@@ -40,7 +40,7 @@ function SingleWine(props) {
     <div>
       <div className="single_backBTN">
         <Link to="/wines">
-          <button type="button">Go back</button>
+          <Button>Go back</Button>
         </Link>
       </div>
       <div className="singleWineContainer">
