@@ -237,3 +237,28 @@ html {
   margin-top: 35px;
   margin-bottom: 65px;
 }
+
+/* CONTACT US */
+.contact-main > h1 {
+  text-align: center;
+}
+.contact-container {
+  padding: 5rem 15%;
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: start;
+  padding: 5%;
+}
+
+.contact-call,
+.email {
+  border: 1px black solid;
+  margin: 5vh;
+  padding: 5vh;
+  text-align: center;
+  height: 10rem;
+  width: 20rem;
+}
