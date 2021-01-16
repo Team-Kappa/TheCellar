@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchWines, fetchSingleWines} from '../store/product'
-
+import axios from 'axios'
 //Material-UI
 import {Container, makeStyles} from '@material-ui/core'
 
@@ -43,6 +43,11 @@ const useStyles = makeStyles(() => ({
  */
 export const Homepage = () => {
   const classes = useStyles()
+  const handleClick = async () => {
+    console.log('hello')
+    const res = await axios.post(`/api/order/`, {userId: 1, isCompleted: false})
+    console.log(res)
+  }
   return (
     <Container className={classes.root} maxWidth="sm">
       <Container className={classes.title} maxWidth="sm">
@@ -57,6 +62,9 @@ export const Homepage = () => {
             Wine and more. Come and choose from a selection of high class wines
             meant to excite your taste buds.{' '}
           </p>
+          <button type="button" onClick={handleClick}>
+            Hello
+          </button>
         </Container>
       </Container>
       <div className="HP_description_container" />

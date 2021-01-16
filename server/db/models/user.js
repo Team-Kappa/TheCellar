@@ -33,10 +33,6 @@ const User = db.define('user', {
     }
   },
 
-  cartItems: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER)
-  },
-
   admin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
