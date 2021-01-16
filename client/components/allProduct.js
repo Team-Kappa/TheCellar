@@ -53,11 +53,14 @@ export class AllProduct extends React.Component {
       <div>
         <img
           className="All_Top_Image"
-          src="https://d84potgbojizh.cloudfront.net/wp-content/uploads/2019/09/Ultimate-Guide-to-Host-Best-Wine-Cheese-Party-Hero.png"
+          src="/images/allProductPageSmall.png"
           alt="Null"
         />
 
         <h1 className="All_Title">OUR WINES</h1>
+        <div className="All_Horizontal">
+          <hr align="center" />
+        </div>
         <div className="All_Button">
           {buttonNames.map(singleButton => {
             return (

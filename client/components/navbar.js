@@ -19,7 +19,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/Contact">
+      <Link to="/contact">
         <div className="headerOption">
           <span className="headerOptionLineOne">Contact</span>
         </div>
@@ -31,7 +31,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/checkout">
+      <Link to="/cart">
         <div className="headerCart">
           <ShoppingCartIcon />
           <span className="headerOptionLineTwo headerCartCount">0</span>
