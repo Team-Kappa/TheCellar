@@ -5,10 +5,12 @@ import {fetchSingleWines} from '../store/product'
 import Button from '@material-ui/core/Button'
 
 function SingleWine(props) {
+  console.log(props)
   const singleWine = useSelector(
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
   const {name, price, type, year, origin, description} = singleWine
+  console.log(singleWine)
 
   const wineId = props.match.params.wineId
   const dispatch = useDispatch()
@@ -22,6 +24,7 @@ function SingleWine(props) {
   //STATE
   const [count, setCount] = useState(0)
   const [total, setTotal] = useState(0)
+
   // COME BACK TO FIX TOTAL
   const handleIncrement = () => {
     setCount(prevCount => prevCount + 1)
@@ -35,6 +38,15 @@ function SingleWine(props) {
       setCount(prevCount => prevCount - 1)
       setTotal(prevTotal => prevTotal - Number(price))
     }
+  }
+
+  const addToCart = () => {
+    dispatch({
+      type: ADD_TO_CART,
+      item: {
+        name: name
+      }
+    })
   }
   return (
     <div>
@@ -69,7 +81,7 @@ function SingleWine(props) {
               </button>
 
               {/* ADD TO CART BUTTON */}
-              <Button variant="contained" color="primary">
+              <Button onClick={addToCart} variant="contained" color="primary">
                 Add to cart
               </Button>
             </div>

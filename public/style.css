@@ -252,6 +252,63 @@ hr {
   margin-bottom: 65px;
 }
 
+/* cart
+*/
+
+.cart {
+  /* display: flex; */
+  /* padding: 20px;
+  background-color: #ffa781;
+  height: max-content; */
+}
+.cartAd {
+  width: 100%;
+  height: 453px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+}
+
+.cartTitle {
+  text-align: center;
+  margin-right: 10px;
+  padding: 10px;
+  font-family: Apple Chancery, cursive;
+  font-size: 500%;
+  /* border-bottom: 1px solid lightgray; */
+}
+
+.subtotal {
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 100px;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+
+.subtotalCoupon {
+  display: flex;
+  align-items: center;
+}
+.subtotalCoupon > input {
+  margin-right: 5px;
+}
+
+.subtotal > button {
+  background: #722620;
+  border-radius: 3px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #5b0e2d;
+  color: #111;
+}
 /* CONTACT US */
 .contact-main {
   position: relative;
