@@ -13,11 +13,21 @@ const defaultCart = []
  * ACTION CREATORS
  */
 //add to cart
-const AddToCart = cart => ({
-  type: ADD_TO_CART,
-  cart
-})
+// const addToCart = cart => ({
+//   type: ADD_TO_CART,
+//   cart
+// })
 
+// //THUNK
+
+// export const addToCart = id => async dispatch => {
+//   try {
+//     const res = await axios.get(`/api/wines/${id}`)
+//     dispatch(setSingleWine(res.data || defaultWine))
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
 /**
  * REDUCER
  */

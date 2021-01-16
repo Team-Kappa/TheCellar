@@ -31,7 +31,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link style={{textDecoration: 'none'}} to="/checkout">
+      <Link style={{textDecoration: 'none'}} to="/cart">
         <div className="headerCart">
           <ShoppingCartIcon />
           <span className="headerOptionLineTwo headerCartCount">0</span>
