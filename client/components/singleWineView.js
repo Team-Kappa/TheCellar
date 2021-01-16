@@ -51,7 +51,7 @@ function SingleWine(props) {
   return (
     <div>
       <div className="single_backBTN">
-        <Link to="/wines">
+        <Link style={{textDecoration: 'none'}} to="/wines">
           <Button>Go back</Button>
         </Link>
       </div>
