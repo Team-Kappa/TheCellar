@@ -8,6 +8,7 @@ import {logout} from '../store/user'
  * COMPONENT
  */
 export const UserHome = props => {
+  console.log(props)
   const {email} = props
 
   return (

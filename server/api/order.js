@@ -10,9 +10,10 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
+//add a product to through table
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req)
     //need userId, isCompleted, productID, product quantity
     //Required: userID, isComplete
     let order = await Order.findOrCreate({
