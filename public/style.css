@@ -201,22 +201,31 @@ hr {
 }
 
 /* SINGLE WINE VIEW */
-
-.singleWineContainer {
-  padding: 5rem 15%;
+.singleWineMain {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 5rem;
 }
 
 .single_backBTN {
   padding-top: 50px;
   padding-left: 10%;
 }
+.singleWineContainer {
+  padding: 5rem 15%;
+  display: flex;
+  justify-content: space-evenly;
+}
 
 .singleWineCard {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: start;
   padding: 5%;
 }
+
 .wine_image {
   justify-content: center;
   height: 15%;
@@ -225,31 +234,47 @@ hr {
 .wine_image > img {
   display: block;
   width: auto;
-  max-height: 71rem;
-  max-width: 80%;
+  max-height: 500px;
+  max-width: 700px;
 }
-/* .singleWineCard > h1 {
+.singleWineCard > wine_info > h1 {
   text-align: center;
-} */
-.wine_info {
 }
 
+.wine_info {
+  /* border: 1px black solid; */
+  /* margin: 5vh; */
+  padding: 5vh;
+  /* text-align: center; */
+  height: 10rem;
+  width: 20rem;
+}
+/* .wine_info > h1 {
+  text-align: center;
+  font-size: 200%;
+} */
 .wine_info > ul {
   list-style-type: none;
+  font-size: 120%;
 }
 
-.wine_info > p {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-}
 .quantity {
-  width: 200px;
+  width: 250px;
   border: black 1px solid;
   display: flex;
-  align-items: center;
+  margin: 30%;
+  padding: 3%;
+  /* align-items: center;
   margin-top: 35px;
-  margin-bottom: 65px;
+  margin-bottom: 65px; */
+}
+.quantity > h1 {
+  font-size: 250%;
+}
+
+.wine_total {
+  text-align: center;
+  font-size: 200%;
 }
 
 /* cart

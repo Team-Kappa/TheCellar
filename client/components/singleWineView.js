@@ -49,7 +49,7 @@ function SingleWine(props) {
     })
   }
   return (
-    <div>
+    <div className="singleWineMain">
       <div className="single_backBTN">
         <Link style={{textDecoration: 'none'}} to="/wines">
           <Button>Go back</Button>
@@ -57,10 +57,10 @@ function SingleWine(props) {
       </div>
       <div className="singleWineContainer">
         {/* Wine description card */}
+        <div className="wine_image">
+          <img src="/images/defaultwine.png" />
+        </div>
         <div className="singleWineCard">
-          <div className="wine_image">
-            <img src="/images/defaultwine.png" />
-          </div>
           <div className="wine_info">
             <h1>{name}</h1>
             <ul>
@@ -70,27 +70,27 @@ function SingleWine(props) {
               <li>Year: {year}</li>
               <li>Description:{description}</li>
             </ul>
+          </div>
+          <div>
             {/* QUANTITY BUTTON */}
             <div className="quantity">
-              <button type="button" onClick={handleDecrement}>
-                -
-              </button>
+              <Button onClick={handleDecrement}>-</Button>
               <h1>{count}</h1>
-              <button type="button" onClick={handleIncrement}>
-                +
-              </button>
+              <Button onClick={handleIncrement}>+</Button>
 
               {/* ADD TO CART BUTTON */}
               <Button onClick={addToCart} variant="contained" color="primary">
                 Add to cart
               </Button>
             </div>
+            <div className="wine_total">
+              <p>Total: ${total / 100}</p>
+            </div>
           </div>
 
           {/* PRICE */}
 
           {/* COME BACK TO FIX TOTAL CONVERSION */}
-          <p>Total: $ {total / 100}</p>
         </div>
       </div>
     </div>
