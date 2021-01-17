@@ -63,9 +63,10 @@ const AuthForm = props => {
     const formName = name
     const email = state.email
     const password = state.password
+    const username = state.username
     if (formName && email && password) {
       console.log('dispatch')
-      dispatch(auth(email, password, formName))
+      dispatch(auth(email, password, username, formName))
       setState({
         username: '',
         email: '',
