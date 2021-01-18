@@ -5,48 +5,69 @@ import {fetchSingleWines} from '../store/product'
 import Button from '@material-ui/core/Button'
 
 function SingleWine(props) {
-  console.log(props)
+  //STATE
+
+  const [state, setState] = useState({
+    wineId: props.match.params.wineId,
+    count: 0,
+    total: 0
+  })
+
+  console.log('prooooppppppsss', props)
   const singleWine = useSelector(
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
   const {name, price, type, year, origin, description} = singleWine
-  console.log(singleWine)
+  console.log('calvinnnnnnnnnn', singleWine)
+
+  const user = useSelector(state => state.user)
+  console.log('userrrr:', user)
 
   const wineId = props.match.params.wineId
   const dispatch = useDispatch()
   useEffect(
     () => {
-      dispatch(fetchSingleWines(wineId))
+      async function getWines() {
+        await dispatch(fetchSingleWines(wineId))
+      }
+      getWines()
+
+      async function getUser() {
+        await dispatch(me())
+      }
+      getUser()
     },
     [dispatch]
   )
 
-  //STATE
-  const [count, setCount] = useState(0)
-  const [total, setTotal] = useState(0)
-
   // COME BACK TO FIX TOTAL
   const handleIncrement = () => {
-    setCount(prevCount => prevCount + 1)
-    setTotal(prevTotal => prevTotal + Number(price))
+    setState(prevState => ({
+      ...prevState,
+      count: prevState.count + 1,
+      total: prevState.total + Number(price)
+    }))
+
+    console.log(state)
   }
+
   // COME BACK TO FIX TOTAL
   const handleDecrement = () => {
     if (count === 0) {
       return 0
     } else {
-      setCount(prevCount => prevCount - 1)
+      setState(prevCount => prevCount - 1)
       setTotal(prevTotal => prevTotal - Number(price))
     }
   }
 
   const addToCart = () => {
-    dispatch({
-      type: ADD_TO_CART,
-      item: {
-        name: name
-      }
-    })
+    //quantity, price, wineid, userid
+    const quantity = state.count
+    const price = price
+    const wineId = state.wineId
+    const userId = user.id
+    console.log('mattttttt', quantity, price, wineId, userId)
   }
   return (
     <div className="singleWineMain">
@@ -75,7 +96,7 @@ function SingleWine(props) {
             {/* QUANTITY BUTTON */}
             <div className="quantity">
               <Button onClick={handleDecrement}>-</Button>
-              <h1>{count}</h1>
+              <h1>{state.count}</h1>
               <Button onClick={handleIncrement}>+</Button>
 
               {/* ADD TO CART BUTTON */}
@@ -84,7 +105,7 @@ function SingleWine(props) {
               </Button>
             </div>
             <div className="wine_total">
-              <p>Total: ${total / 100}</p>
+              <p>Total: ${state.total / 100}</p>
             </div>
           </div>
 
