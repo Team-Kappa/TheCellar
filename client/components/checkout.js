@@ -38,7 +38,6 @@ export class Checkout extends React.Component {
   render() {
     const {expanded} = this.state
     const {classes} = this.props
-    console.log('@#@#@#', this.props)
 
     return (
       <div className="CHECKOUT_Main_Container">

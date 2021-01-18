@@ -51,7 +51,6 @@ export const fetchSingleWines = id => async dispatch => {
 
 export const createWine = newWine => async dispatch => {
   try {
-    console.log('newWine -->', newWine)
     const res = await axios.post(`/api/wines`, newWine)
     dispatch(fetchWines(res.data || defaultWine))
   } catch (error) {

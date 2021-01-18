@@ -52,7 +52,6 @@ export const UserHome = props => {
   const {email} = props
   const dispatch = useDispatch()
   const {product, user} = useSelector(state => state)
-  console.log(product, user)
   const classes = useStyles()
   useEffect(() => {
     async function getWines() {

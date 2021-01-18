@@ -24,7 +24,6 @@ router.get('/:wineId', async (req, res, next) => {
 //POST ADD NEW WINE
 router.post('/', async (req, res, next) => {
   try {
-    console.log('req.body -->', req.body)
     const wine = await Product.create(req.body)
     res.status(200).json(wine)
   } catch (error) {

@@ -30,8 +30,6 @@ class AddWine extends Component {
 
   handleSubmit(event) {
     try {
-      console.log('button clicked')
-      console.log('handleSubmit this.state ->', event)
       this.props.addWine({...this.state})
     } catch (error) {
       console.log(error)
