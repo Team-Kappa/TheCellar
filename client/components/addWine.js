@@ -28,10 +28,10 @@ class AddWine extends Component {
     }))
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     try {
       console.log('button clicked')
-      console.log('handleSubmit this.state ->', this.state)
+      console.log('handleSubmit this.state ->', event)
       this.props.addWine({...this.state})
     } catch (error) {
       console.log(error)
@@ -88,7 +88,7 @@ class AddWine extends Component {
           </form>
 
           <Button onClick={this.handleSubmit.bind(this)}>Add Wine</Button>
-          <Button>Cancel</Button>
+          <Button href="/home">Cancel</Button>
         </form>
       </div>
     )

@@ -78,7 +78,11 @@ export const UserHome = props => {
       <h3>Welcome, {email}</h3>
       <Container className={classes.allWines} max-width="lg">
         <div className={classes.addWine} key="addWine">
-          <Button className={classes.addWineButton} variant="contained">
+          <Button
+            href="/addwine"
+            className={classes.addWineButton}
+            variant="contained"
+          >
             + Add wine
           </Button>
         </div>
