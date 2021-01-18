@@ -234,10 +234,12 @@ hr {
 */
 
 .cart {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
   /* padding: 20px;
   background-color: #ffa781;
   height: max-content; */
+  align-items: center;
 }
 .cartAd {
   width: 100%;
@@ -255,9 +257,35 @@ hr {
   font-size: 500%;
   /* border-bottom: 1px solid lightgray; */
 }
+.cartLeft {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  /* width: 300px; */
+  height: 300px;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  border: black 1px solid;
+}
+.cart-CardItems > h1 {
+  font-family: Apple Chancery, cursive;
+  font-size: 200%;
+}
+.cart-CardItems {
+  border: black 1px dotted;
+  display: flex;
+  flex-direction: column;
+}
 
+.cartRight {
+  flex-direction: column;
+  display: flex;
+}
 .subtotal {
   display: flex;
+  /* position: sticky; */
   margin-left: auto;
   flex-direction: column;
   justify-content: space-between;
@@ -265,8 +293,8 @@ hr {
   height: 100px;
   padding: 20px;
   background-color: #f3f3f3;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
+  border: 1px solid black;
+  border-radius: 20px;
 }
 
 .subtotalCoupon {

@@ -2,52 +2,96 @@ import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchSingleWines} from '../store/product'
+import {me} from '../store/user'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
+import {itemToCart} from '../store/cart'
 
 function SingleWine(props) {
-  console.log(props)
+  //STATE
+
+  const [state, setState] = useState({
+    wineId: props.match.params.wineId,
+    count: 0,
+    total: 0
+  })
+
   const singleWine = useSelector(
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
+
+  const data = useSelector(state => state)
+  console.log('im the data', data)
+
   const {name, price, type, year, origin, description} = singleWine
-  console.log(singleWine)
+
+  const user = useSelector(state => state.user)
 
   const wineId = props.match.params.wineId
   const dispatch = useDispatch()
   useEffect(
     () => {
-      dispatch(fetchSingleWines(wineId))
+      async function getWines() {
+        await dispatch(fetchSingleWines(wineId))
+      }
+      getWines()
+
+      async function getUser() {
+        await dispatch(me())
+      }
+      getUser()
     },
     [dispatch]
   )
 
-  //STATE
-  const [count, setCount] = useState(0)
-  const [total, setTotal] = useState(0)
-
   // COME BACK TO FIX TOTAL
   const handleIncrement = () => {
-    setCount(prevCount => prevCount + 1)
-    setTotal(prevTotal => prevTotal + Number(price))
+    setState(prevState => ({
+      ...prevState,
+      count: prevState.count + 1,
+      total: prevState.total + Number(price)
+    }))
   }
+
   // COME BACK TO FIX TOTAL
   const handleDecrement = () => {
-    if (count === 0) {
+    if (state.count === 0) {
       return 0
     } else {
-      setCount(prevCount => prevCount - 1)
-      setTotal(prevTotal => prevTotal - Number(price))
+      setState(prevState => ({
+        ...prevState,
+        count: prevState.count - 1,
+        total: prevState.total - Number(price)
+      }))
     }
   }
 
-  const addToCart = () => {
-    dispatch({
-      type: ADD_TO_CART,
-      item: {
-        name: name
-      }
+  const handleAddCart = () => {
+    console.log('hello')
+    //quantity, price, wineid, userid
+    const quantity = state.count
+    const price = state.total / 100
+    const wineId = state.wineId
+    const userId = user.id
+
+    // const res = userId
+    //   ? await axios.post(`/api/orderDetails/`, {
+    //       userId: user.id,
+    //       productId: wineId,
+    //       productQuantity: quantity,
+    //       productPrice: price,
+    //     })
+    //   : undefined
+    // console.log('hello', res)
+    itemToCart({
+      quantity,
+      price,
+      wineId,
+      userId
     })
+    console.log('helllo to cart')
   }
+
   return (
     <div className="singleWineMain">
       <div className="single_backBTN">
@@ -75,16 +119,20 @@ function SingleWine(props) {
             {/* QUANTITY BUTTON */}
             <div className="quantity">
               <Button onClick={handleDecrement}>-</Button>
-              <h1>{count}</h1>
+              <h1>{state.count}</h1>
               <Button onClick={handleIncrement}>+</Button>
 
               {/* ADD TO CART BUTTON */}
-              <Button onClick={addToCart} variant="contained" color="primary">
+              <Button
+                onClick={handleAddCart}
+                variant="contained"
+                color="primary"
+              >
                 Add to cart
               </Button>
             </div>
             <div className="wine_total">
-              <p>Total: ${total / 100}</p>
+              <p>Total: ${state.total / 100}</p>
             </div>
           </div>
 
