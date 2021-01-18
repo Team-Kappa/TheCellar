@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import {auth} from '../store'
 
 //Material UI
-import {FormControl, TextField, Container, Button} from '@material-ui/core'
+import {
+  FormControl,
+  TextField,
+  Container,
+  Button,
+  Link
+} from '@material-ui/core'
 
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -104,18 +110,7 @@ const AuthForm = props => {
               className={classes.formElm}
               helperText="Username field is required"
               variant="outlined"
-            />
-          </FormControl>
-          <FormControl required>
-            <TextField
-              error={errorPassword}
-              label="Password"
-              id="password"
-              value={state.password}
-              onChange={handleChange}
-              className={classes.formElm}
-              helperText="Password field is required"
-              variant="outlined"
+              required
             />
           </FormControl>
           <FormControl>
@@ -128,6 +123,20 @@ const AuthForm = props => {
               className={classes.formElm}
               helperText="Email field is required"
               variant="outlined"
+              required
+            />
+          </FormControl>
+          <FormControl>
+            <TextField
+              error={errorPassword}
+              label="Password"
+              id="password"
+              value={state.password}
+              onChange={handleChange}
+              className={classes.formElm}
+              helperText="Password field is required"
+              variant="outlined"
+              required
             />
           </FormControl>
           <Button
@@ -140,7 +149,8 @@ const AuthForm = props => {
           {error && error.response && <div> {error.response.data} </div>}
         </form>
       </Container>
-      <a href="/auth/google">{displayName} with Google</a>
+      <Link href="/auth/google">{displayName} with Google</Link>
+      {name == 'login' ? <Link href="/signup">Sign up</Link> : null}
     </Container>
   )
 }
