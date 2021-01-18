@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchSingleWines} from '../store/product'
+import {me} from '../store/user'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
+import {itemToCart} from '../store/cart'
 
 function SingleWine(props) {
   //STATE
@@ -13,15 +16,16 @@ function SingleWine(props) {
     total: 0
   })
 
-  console.log('prooooppppppsss', props)
   const singleWine = useSelector(
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
+
+  const data = useSelector(state => state)
+  console.log('im the data', data)
+
   const {name, price, type, year, origin, description} = singleWine
-  console.log('calvinnnnnnnnnn', singleWine)
 
   const user = useSelector(state => state.user)
-  console.log('userrrr:', user)
 
   const wineId = props.match.params.wineId
   const dispatch = useDispatch()
@@ -47,28 +51,47 @@ function SingleWine(props) {
       count: prevState.count + 1,
       total: prevState.total + Number(price)
     }))
-
-    console.log(state)
   }
 
   // COME BACK TO FIX TOTAL
   const handleDecrement = () => {
-    if (count === 0) {
+    if (state.count === 0) {
       return 0
     } else {
-      setState(prevCount => prevCount - 1)
-      setTotal(prevTotal => prevTotal - Number(price))
+      setState(prevState => ({
+        ...prevState,
+        count: prevState.count - 1,
+        total: prevState.total - Number(price)
+      }))
     }
   }
 
-  const addToCart = () => {
+  const handleAddCart = () => {
+    console.log('hello')
     //quantity, price, wineid, userid
     const quantity = state.count
-    const price = price
+    const price = state.total / 100
     const wineId = state.wineId
     const userId = user.id
-    console.log('mattttttt', quantity, price, wineId, userId)
+
+    // const res = userId
+    //   ? await axios.post(`/api/orderDetails/`, {
+    //       userId: user.id,
+    //       productId: wineId,
+    //       productQuantity: quantity,
+    //       productPrice: price,
+    //     })
+    //   : undefined
+    // console.log('hello', res)
+    itemToCart({
+      quantity,
+      price,
+      wineId,
+      userId
+    })
+    console.log('helllo to cart')
   }
+
   return (
     <div className="singleWineMain">
       <div className="single_backBTN">
@@ -100,7 +123,11 @@ function SingleWine(props) {
               <Button onClick={handleIncrement}>+</Button>
 
               {/* ADD TO CART BUTTON */}
-              <Button onClick={addToCart} variant="contained" color="primary">
+              <Button
+                onClick={handleAddCart}
+                variant="contained"
+                color="primary"
+              >
                 Add to cart
               </Button>
             </div>
