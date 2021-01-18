@@ -24,7 +24,7 @@ const styles = theme => ({
   }
 })
 
-export class Checkout extends React.Component {
+export class CheckoutPanel extends React.Component {
   state = {
     expanded: null
   }

@@ -5,7 +5,6 @@ const db = require('../db')
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
 
@@ -31,10 +30,6 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('salt')
     }
-  },
-
-  cartItems: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER)
   },
 
   admin: {
