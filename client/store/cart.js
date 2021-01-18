@@ -32,7 +32,6 @@ const defaultCart = []
  * REDUCER
  */
 export default function(state = defaultCart, action) {
-  console.log(action)
   switch (action.type) {
     case ADD_TO_CART:
       return [...state, action.item]

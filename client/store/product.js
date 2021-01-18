@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const SET_WINE = 'SET_WINE'
 const SET_SINGLEWINE = 'SET_SINGLEWINE'
+const ADD_WINE = 'ADD_WINE'
 /**
  * INITIAL STATE
  */
@@ -23,6 +24,10 @@ const setSingleWine = singleWine => ({
   type: SET_SINGLEWINE,
   singleWine
 })
+// //Add new wine
+// const addWine = (newWine) => ({
+//   type: ADD_WINE, newWine
+// })
 
 /**
  * THUNK CREATORS
@@ -44,6 +49,15 @@ export const fetchSingleWines = id => async dispatch => {
   }
 }
 
+export const createWine = newWine => async dispatch => {
+  try {
+    const res = await axios.post(`/api/wines`, newWine)
+    dispatch(fetchWines(res.data || defaultWine))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -53,6 +67,8 @@ export default function(state = defaultWine, action) {
       return {...state, wines: action.wines}
     case SET_SINGLEWINE:
       return {...state, singleWine: action.singleWine}
+    case ADD_WINE:
+      return {...state, newWine: action.newWine}
     default:
       return state
   }

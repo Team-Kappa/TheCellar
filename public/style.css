@@ -328,3 +328,54 @@ hr {
   height: 10rem;
   width: 20rem;
 }
+
+/* CHECKOUT STYLING */
+.CHECKOUT_Main_Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 50px;
+}
+
+.CHECKOUT_Container {
+  width: 60%;
+  /* display: flex; */
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+}
+
+.CHECKOUT_Title {
+  margin-top: 100px;
+  margin-bottom: 30px;
+  font-size: 250%;
+  font-family: Apple Chancery, cursive;
+}
+
+.CHECKOUT_Summary_Box {
+  width: 40%;
+  /* justify-content: center; */
+  border: 1px rgb(150, 150, 150) solid;
+  margin: 10vh;
+  padding: 5vh;
+  /* text-align: center; */
+  height: 30rem;
+  width: 20rem;
+  border-radius: 15px;
+}
+
+/* .CHECKOUT_Form {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 100%
+} */
+/*
+.CHECKOUT_Form_Button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+} */
