@@ -9,17 +9,17 @@ import PersonIcon from '@material-ui/icons/Person'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navbar">
     <Link to="/">
-      <img className="navbarLogo" src="/images/Wine_logo2.png" alt="" />
+      <img className="navbarLogo" src="/images/grapeshopperlogo.png" alt="" />
     </Link>
 
     <div className="headerNav">
-      <Link to="/wines">
+      <Link style={{textDecoration: 'none'}} to="/wines">
         <div className="headerOption">
           <span className="headerOptionLineOne">Wine</span>
         </div>
       </Link>
 
-      <Link to="/contact">
+      <Link style={{textDecoration: 'none'}} to="/contact">
         <div className="headerOption">
           <span className="headerOptionLineOne">Contact</span>
         </div>
@@ -31,7 +31,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/checkout">
+      <Link style={{textDecoration: 'none'}} to="/cart">
         <div className="headerCart">
           <ShoppingCartIcon />
           <span className="headerOptionLineTwo headerCartCount">0</span>
