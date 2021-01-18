@@ -2,30 +2,89 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchWines, fetchSingleWines} from '../store/product'
 
+//Material-UI
+import {Container, makeStyles, Link} from '@material-ui/core'
+
+//Homepage Styles
+const useStyles = makeStyles(() => ({
+  root: {
+    backgroundColor: '#fcb89b',
+    color: '#5b0e2d',
+    fontFamily: 'Lobster Two, cursive',
+    paddingTop: '5%',
+    paddingBottom: '5%'
+  },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingBottom: '5%',
+    fontSize: '40px',
+    textDecoration: 'underline'
+  },
+  descriptionBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    flexDirection: 'column'
+  },
+  img: {
+    '& img': {
+      width: '120px'
+    },
+    justifyContent: 'center',
+    display: 'flex',
+    padding: '0 0 5% 0'
+  },
+  description: {
+    margin: 'auto',
+    flexBasis: '20vh'
+  },
+  bannerImg: {
+    width: '100%',
+    height: '450px',
+    objectFit: 'cover'
+  },
+  bannerFlex: {
+    justifyContent: 'center',
+    display: 'flex',
+    borderBottom: '3px solid black'
+  }
+}))
 /**
  * COMPONENT
  */
-export class Homepage extends React.Component {
-  render() {
-    return (
-      <div className="HPContainer">
-        <div className="HP_title_container">
-          <h1>Wine Shopper</h1>
-        </div>
-        <div className="HP_description_container">
-          <div className="HP_Image">
-            <img src="/images/Wine_logo2.png" />
-          </div>
-          <div className="HP_description">
-            <p>
-              Wine and more. Come and choose from a selection of high class
-              wines meant to excite your taste buds.{' '}
-            </p>
-          </div>
-        </div>
+export const Homepage = () => {
+  const classes = useStyles()
+  return (
+    <>
+      <div className={classes.bannerFlex}>
+        <img
+          className={classes.bannerImg}
+          src="/images/homepage_banner_logo.jpg"
+        />
       </div>
-    )
-  }
+
+      <Container className={classes.root} maxWidth="sm">
+        <Container className={classes.title} maxWidth="sm">
+          <h1 className={classes.header1}>Winegrace</h1>
+        </Container>
+        <Container className={classes.descriptionBox} maxWidth="sm">
+          <Container className={classes.img} maxWidth="sm">
+            <img src="/images/Wine_logo2.png" alt="Wine_Logo" />
+          </Container>
+          <Container>
+            <p>
+              Winegrace is a easy to use ecommerce site to satisfy your needs of
+              wine. From reds to sparkling, come and choose from a selection of
+              high class wines ready to excite your taste buds. If you want more
+              information please <Link href="/contact">contact us</Link>.
+            </p>
+          </Container>
+        </Container>
+        <div className="HP_description_container" />
+      </Container>
+    </>
+  )
 }
 
 /**

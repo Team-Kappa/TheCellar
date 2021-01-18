@@ -25,7 +25,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link style={{textDecoration: 'none'}} to="/SignIn">
+      <Link to="/login">
         <div className="headerProfile">
           <PersonIcon />
         </div>
