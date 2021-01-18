@@ -13,17 +13,19 @@ router.get('/', async (req, res, next) => {
 //add a product to through table
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req)
+    console.log(req.body)
     //need userId, isCompleted, productID, product quantity
     //Required: userID, isComplete
     let order = await Order.findOrCreate({
       where: {
-        userId: 1,
-        isCompleted: false
+        userId: req.body.userId,
+        isCompleted: req.body.isCompleted
       }
     })
+    console.log('Order: ', order)
     //Required: productID
-    const product = await Product.findByPk(2)
+    const product = await Product.findByPk(2) //req.body.productID
+    console.log('Product: ', product)
 
     //Required: productQuantity, product price
     await product.addOrder(order[0], {

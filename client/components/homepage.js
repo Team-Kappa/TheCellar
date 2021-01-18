@@ -1,6 +1,7 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, {useEffect, useState} from 'react'
+import {connect, useDispatch, useSelector} from 'react-redux'
 import {fetchWines, fetchSingleWines} from '../store/product'
+import {me} from '../store/user'
 import axios from 'axios'
 //Material-UI
 import {Container, makeStyles} from '@material-ui/core'
@@ -41,13 +42,48 @@ const useStyles = makeStyles(() => ({
 /**
  * COMPONENT
  */
-export const Homepage = () => {
+export const Homepage = props => {
   const classes = useStyles()
+  const [state, setState] = useState({
+    userID: 0
+  })
+
+  console.count(props, state)
+
+  //Hooks
+  // const info = useSelector(state => state)
+  // console.log("info", info)
+  const dispatch = useDispatch()
+
+  useEffect(
+    () => {
+      console.log('hello Effect')
+      //hooks
+      async function getUser() {
+        await dispatch(me())
+      }
+
+      getUser()
+    },
+    [dispatch]
+  )
+
   const handleClick = async () => {
-    console.log('hello')
-    const res = await axios.post(`/api/order/`, {userId: 1, isCompleted: false})
-    console.log(res)
+    // console.log('hello: ', props.state.user.id)
+    // setState({...state, userID: props.state.user.id})
+    // console.log("setState!: ", state)
+    console.log('Clicked')
+    console.log('id: ', props.state.user.id)
+    const id = props.state.user.id
+    const res = id
+      ? await axios.post(`/api/order/`, {
+          userId: props.state.user.id,
+          isCompleted: false
+        })
+      : undefined
+    console.log('hello', res)
   }
+
   return (
     <Container className={classes.root} maxWidth="sm">
       <Container className={classes.title} maxWidth="sm">
@@ -75,10 +111,12 @@ export const Homepage = () => {
 /**
  * CONTAINER
  */
+//Class component and hooks
 const mapState = state => {
   return {
     wines: state.product.wines,
-    singleWine: state.product.singleWine
+    singleWine: state.product.singleWine,
+    state: state
   }
 }
 const mapDispatch = dispatch => {

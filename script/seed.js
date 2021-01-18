@@ -12,28 +12,24 @@ async function seed() {
       username: 'Matt',
       email: 'mattwine@gmail.com',
       password: 'winewine',
-      cartItems: [],
       admin: true
     }),
     User.create({
       username: 'Jonathan',
       email: 'jonathanwine@gmail.com',
       password: 'winewine',
-      cartItems: [],
       admin: true
     }),
     User.create({
       username: 'Eun',
       email: 'eunwine@gmail.com',
       password: 'winewine',
-      cartItems: [],
       admin: true
     }),
     User.create({
       username: 'Calvin',
       email: 'calvinwine@gmail.com',
       password: 'winewine',
-      cartItems: [],
       admin: true
     })
   ])
