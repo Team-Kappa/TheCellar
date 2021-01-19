@@ -6,6 +6,8 @@ import axios from 'axios'
 const SET_WINE = 'SET_WINE'
 const SET_SINGLEWINE = 'SET_SINGLEWINE'
 const ADD_WINE = 'ADD_WINE'
+const DELETE_WINE = 'DELETE_WINE'
+
 /**
  * INITIAL STATE
  */
@@ -24,10 +26,6 @@ const setSingleWine = singleWine => ({
   type: SET_SINGLEWINE,
   singleWine
 })
-// //Add new wine
-// const addWine = (newWine) => ({
-//   type: ADD_WINE, newWine
-// })
 
 /**
  * THUNK CREATORS
@@ -40,6 +38,7 @@ export const fetchWines = () => async dispatch => {
     console.log(err)
   }
 }
+
 export const fetchSingleWines = id => async dispatch => {
   try {
     const res = await axios.get(`/api/wines/${id}`)
@@ -58,6 +57,16 @@ export const createWine = newWine => async dispatch => {
   }
 }
 
+export const deleteWine = wine => async dispatch => {
+  try {
+    await axios.delete(`/api/wines/${wine.id}`)
+    const res = await axios.get('/api/wines')
+    dispatch(setWines(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -69,6 +78,9 @@ export default function(state = defaultWine, action) {
       return {...state, singleWine: action.singleWine}
     case ADD_WINE:
       return {...state, newWine: action.newWine}
+    case DELETE_WINE:
+      return state.filter(wine => wine.id !== action.wine.id)
+
     default:
       return state
   }
