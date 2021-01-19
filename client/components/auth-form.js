@@ -11,9 +11,9 @@ import {
   Button,
   Link
 } from '@material-ui/core'
-
 import {makeStyles} from '@material-ui/core/styles'
 
+//Auth form stypes
 const useStyles = makeStyles(() => ({
   root: {
     width: '100vh',
@@ -45,12 +45,15 @@ const useStyles = makeStyles(() => ({
 }))
 
 /**
- * COMPONENT
+ * Auth COMPONENT
  */
 const AuthForm = props => {
   const {name, displayName, error} = props
+  //Styles class
   const classes = useStyles()
+  //Dispatch from redux
   const dispatch = useDispatch()
+  //init state
   const [state, setState] = React.useState({
     username: '',
     email: '',
@@ -59,19 +62,18 @@ const AuthForm = props => {
     errorEmail: false,
     errorPassword: false
   })
+
+  //handleChange (event) - update state when user types into the field
   const handleChange = event => {
     setState({...state, [event.target.id]: event.target.value})
   }
+  //handleSubmit (event) submit the form
   const handleSubmit = event => {
-    console.log('hello')
-    console.log(state)
     event.preventDefault()
     const formName = name
-    const email = state.email
-    const password = state.password
-    const username = state.username
+    const {email, password, username} = state
+    //Validation check
     if (formName && email && password) {
-      console.log('dispatch')
       dispatch(auth(email, password, username, formName))
       setState({
         username: '',
@@ -91,10 +93,9 @@ const AuthForm = props => {
       console.log('err', state)
     }
   }
+  //set Errors
+  const {errorName, errorEmail, errorPassword} = state
 
-  const errorName = state.errorName
-  const errorEmail = state.errorEmail
-  const errorPassword = state.errorPassword
   return (
     <Container className={classes.root} maxWidth="xs">
       <h1>{displayName}</h1>
@@ -149,8 +150,8 @@ const AuthForm = props => {
           {error && error.response && <div> {error.response.data} </div>}
         </form>
       </Container>
-      <Link href="/auth/google">{displayName} with Google</Link>
-      {name == 'login' ? <Link href="/signup">Sign up</Link> : null}
+      {/* <Link href="/auth/google">{displayName} with Google</Link> */}
+      {name === 'login' ? <Link href="/signup">Sign up</Link> : null}
     </Container>
   )
 }
