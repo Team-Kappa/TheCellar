@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect, useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store/user'
-import {fetchWines} from '../store/product'
+import {fetchWines, deleteWine} from '../store/product'
 
 //Material ui
 import {Container, makeStyles, Button} from '@material-ui/core'
@@ -80,6 +80,15 @@ export const UserHome = props => {
             <img className={classes.AllWineImage} src={wine.imageUrl} />
             <h3 className={classes.WineName}>{wine.name}</h3>
           </Link>
+          <div className={classes.button}>
+            <Button
+              type="button"
+              variant="contained"
+              onClick={() => props.deleteWine(wine)}
+            >
+              DELETE
+            </Button>
+          </div>
         </div>
       )
     })
@@ -140,12 +149,14 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     email: state.user.email,
-    user: state.user
+    user: state.user,
+    wines: state.wines
   }
 }
 const mapDispatch = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    deleteWine: wine => dispatch(deleteWine(wine))
   }
 }
 
