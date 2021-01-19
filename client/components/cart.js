@@ -1,8 +1,10 @@
-import {connect} from 'react-redux'
-import React from 'react'
+import {connect, useSelector} from 'react-redux'
+import React, {useState} from 'react'
 import Subtotal from './Subtotal'
 
 function Cart() {
+  const cart = useSelector(state => state.cart.cart)
+  console.log(cart)
   return (
     <>
       <div className="cart">
@@ -16,13 +18,12 @@ function Cart() {
             <h1>My Items</h1>
             {/* <img src="/images/defaultwine.png" alt="" /> */}
             {/* if cart is empty render "no items" */}
-            {/* mapping items in here */}
           </div>
         </div>
       </div>
       <div className="cartRight">
         {/* <h2>Cart totals</h2> */}
-        <Subtotal />
+        {/* <Subtotal /> */}
       </div>
     </>
   )
