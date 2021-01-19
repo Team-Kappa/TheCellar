@@ -31,4 +31,18 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+//DELETE WINE
+router.delete('/:wineId', async (req, res, next) => {
+  try {
+    const wine = await Product.destroy({
+      where: {
+        id: req.params.wineId
+      }
+    })
+    res.json(wine)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
