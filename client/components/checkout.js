@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import React from 'react'
+import PaymentForm from './creditCard'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -226,7 +227,12 @@ export class Checkout extends React.Component {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography>CHOOSE THE SHIPPING METHOD</Typography>
+                <div>
+                  <Typography>ADD A PAYMENT METHOD</Typography>
+                </div>
+                <div>
+                  <PaymentForm />
+                </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
 

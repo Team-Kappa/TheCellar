@@ -67,7 +67,7 @@ export const Homepage = () => {
 
       <Container className={classes.root} maxWidth="sm">
         <Container className={classes.title} maxWidth="sm">
-          <h1 className={classes.header1}>GRAPE SHOPPER</h1>
+          <h1 className={classes.header1}>THE CELLAR</h1>
         </Container>
         <Container className={classes.descriptionBox} maxWidth="sm">
           <Container className={classes.img} maxWidth="sm">
@@ -75,10 +75,10 @@ export const Homepage = () => {
           </Container>
           <Container>
             <p>
-              Winegrace is a easy to use ecommerce site to satisfy your needs of
-              wine. From reds to sparkling, come and choose from a selection of
-              high class wines ready to excite your taste buds. If you want more
-              information please <Link href="/contact">contact us</Link>.
+              The Cellar is a easy to use ecommerce site to satisfy your needs
+              of wine. From reds to sparkling, come and choose from a selection
+              of high class wines ready to excite your taste buds. If you want
+              more information please <Link href="/contact">contact us</Link>.
             </p>
           </Container>
         </Container>
