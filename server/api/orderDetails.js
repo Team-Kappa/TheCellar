@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {OrderDetails} = require('../db/models')
+const {OrderDetails, Order, Product} = require('../db/models')
 
 //GET ALL ORDER DETAILS
 router.get('/', async (req, res, next) => {
@@ -10,23 +10,43 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
-//POST ORDER DETAILS
-router.post('/', async (req, res, next) => {
+//GETTING USER ID & SPECIFIED ORDER ID
+router.get('/:userId', async (req, res, next) => {
   try {
-    //console.log('req', req.body)
-    const orderDetails = await OrderDetails.findOrCreate({
+    const orders = await Order.findOne({
       where: {
-        orderId: req.body.userId, //figure out issue here
-        productId: req.body.productId,
-        productQuantity: req.body.productQuantity,
-        productPrice: req.body.productPrice
-      }
+        userId: req.params.userId,
+        isCompleted: false
+      },
+      include: [Product]
     })
-    res.json(orderDetails)
+    const data = await orders.getProducts()
+    // console.log('Object.keys', Object.keys(order.prototype))
+    res.json(orders)
   } catch (err) {
     next(err)
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    let order = await Order.findOrCreate({
+      where: {
+        userId: req.body.userId,
+        isCompleted: false
+      },
+      include: [Product]
+    })
+    const product = await Product.findByPk(req.body.productId)
+
+    await product.addOrder(order[0], {
+      through: {
+        productQuantity: req.body.productQuantity,
+        productPrice: req.body.productPrice
+      }
+    })
+  } catch (err) {
+    next(err)
+  }
+})
 module.exports = router
