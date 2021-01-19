@@ -41,7 +41,8 @@ export const auth = (email, password, username, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    console.log(res.data)
+    res.data.admin == true ? history.push('/admin') : history.push('/wines')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

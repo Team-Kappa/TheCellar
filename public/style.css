@@ -26,11 +26,11 @@ html {
 }
 
 .navbarLogo {
-  width: 40px;
+  width: 70px;
   object-fit: contain;
-  margin: 0 10px;
-  margin-top: 10px;
-  transform: rotate(320deg);
+  margin: auto;
+  padding: auto;
+  /* transform: rotate(320deg); */
 }
 
 .headerNav {
@@ -77,10 +77,15 @@ html {
   margin-left: 10px;
   margin-right: 10px;
 }
-
-.headerCartCount {
+.headerLogout {
+  display: flex;
+  align-items: center;
+  color: white;
   margin-left: 10px;
   margin-right: 10px;
+}
+.headerCartCount {
+  margin-left: 10px;
 }
 
 .headerOptionLineOne {
