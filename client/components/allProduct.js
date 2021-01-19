@@ -12,11 +12,13 @@ export class AllProduct extends React.Component {
     }
   }
 
+  //use default state from redux store
+
   componentDidMount() {
     this.props.getWines()
   }
 
-  wineButtonClickHandler = (buttonName, rawWineData) => {
+  wineCategoryClickHandler = (buttonName, rawWineData) => {
     const filteredWineData = rawWineData.filter(
       wineData => wineData.type.toUpperCase() === buttonName
     )
@@ -66,7 +68,9 @@ export class AllProduct extends React.Component {
             return (
               <Button
                 size="large"
-                onClick={() => this.wineButtonClickHandler(singleButton, wines)}
+                onClick={() =>
+                  this.wineCategoryClickHandler(singleButton, wines)
+                }
                 key={`${singleButton}`}
               >
                 {singleButton}
