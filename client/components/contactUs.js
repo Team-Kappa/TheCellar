@@ -26,7 +26,7 @@ function ContactUs() {
             <EmailTwoToneIcon />
             <h2>Email us:</h2>
             <div className="email-icon" />
-            <h3>WineShopper@grapesRus.com</h3>
+            <h3>TheCellar@thecellar.com</h3>
           </div>
         </div>
 

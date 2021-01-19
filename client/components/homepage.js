@@ -9,17 +9,18 @@ import {Container, makeStyles, Link} from '@material-ui/core'
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#fcb89b',
-    color: '#5b0e2d',
+    // color: '#5b0e2d',
+    color: 'black',
     fontFamily: 'Lobster Two, cursive',
     paddingTop: '5%',
     paddingBottom: '5%'
   },
   title: {
     display: 'flex',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     paddingBottom: '5%',
-    fontSize: '40px',
-    textDecoration: 'underline'
+    fontSize: '50px'
+    // textDecoration: 'underline',
   },
   descriptionBox: {
     display: 'flex',
@@ -28,9 +29,9 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column'
   },
   img: {
-    '& img': {
-      width: '120px'
-    },
+    // '& img': {
+    //   width: '150%',
+    // },
     justifyContent: 'center',
     display: 'flex',
     padding: '0 0 5% 0'
@@ -66,18 +67,18 @@ export const Homepage = () => {
 
       <Container className={classes.root} maxWidth="sm">
         <Container className={classes.title} maxWidth="sm">
-          <h1 className={classes.header1}>Winegrace</h1>
+          <h1 className={classes.header1}>THE CELLAR</h1>
         </Container>
         <Container className={classes.descriptionBox} maxWidth="sm">
           <Container className={classes.img} maxWidth="sm">
-            <img src="/images/Wine_logo2.png" alt="Wine_Logo" />
+            <img src="/images/logoblack.png" alt="Wine_Logo" />
           </Container>
           <Container>
             <p>
-              Winegrace is a easy to use ecommerce site to satisfy your needs of
-              wine. From reds to sparkling, come and choose from a selection of
-              high class wines ready to excite your taste buds. If you want more
-              information please <Link href="/contact">contact us</Link>.
+              The Cellar is a easy to use ecommerce site to satisfy your needs
+              of wine. From reds to sparkling, come and choose from a selection
+              of high class wines ready to excite your taste buds. If you want
+              more information please <Link href="/contact">contact us</Link>.
             </p>
           </Container>
         </Container>
