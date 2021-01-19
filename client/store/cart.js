@@ -9,7 +9,7 @@ const GET_CART_INFO = 'GET_CART_INFO'
  * INITIAL STATE
  */
 const defaultCart = {
-  cart: []
+  cart: ['hello', 'hello']
 } //orders?
 
 /**
