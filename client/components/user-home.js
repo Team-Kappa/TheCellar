@@ -15,6 +15,16 @@ const useStyles = makeStyles(() => ({
     paddingTop: '5%',
     paddingBottom: '5%'
   },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '5%'
+  },
+  button: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '5%'
+  },
   allWines: {
     justifyContent: 'center',
     display: 'flex',
@@ -49,9 +59,11 @@ const useStyles = makeStyles(() => ({
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {user} = props
+  console.log(props)
+  const {admin} = user
   const dispatch = useDispatch()
-  const {product, user} = useSelector(state => state)
+  const {product} = useSelector(state => state)
   const classes = useStyles()
   useEffect(() => {
     async function getWines() {
@@ -72,26 +84,54 @@ export const UserHome = props => {
       )
     })
   }
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <Container className={classes.allWines} max-width="lg">
-        <div className={classes.addWine} key="addWine">
+
+  const notAdminView = () => {
+    return (
+      <>
+        <Container className={classes.title} max-width="lg">
+          <h1>{user.username.toUpperCase()} does not have admin access</h1>
+        </Container>
+        <Container className={classes.button} max-width="lg">
           <Button
-            href="/addwine"
-            className={classes.addWineButton}
+            type="button"
             variant="contained"
+            onClick={() => props.logout()}
           >
-            + Add wine
+            Logout
           </Button>
-        </div>
-        {product.wines ? displayWines(product.wines) : null}
-      </Container>
-      <button type="button" onClick={() => props.logout()}>
-        Logout
-      </button>
-    </div>
-  )
+        </Container>
+      </>
+    )
+  }
+  const adminView = () => {
+    return (
+      <>
+        <Container className={classes.title} max-width="lg">
+          <h1>Admin Control for {user.username.toUpperCase()}</h1>
+        </Container>
+        <Container className={classes.allWines} max-width="lg">
+          <div className={classes.addWine} key="addWine">
+            <Button
+              href="/addwine"
+              className={classes.addWineButton}
+              variant="contained"
+            >
+              + Add wine
+            </Button>
+          </div>
+          {product.wines ? displayWines(product.wines) : null}
+        </Container>
+        <Button
+          type="button"
+          variant="contained"
+          onClick={() => props.logout()}
+        >
+          Logout
+        </Button>
+      </>
+    )
+  }
+  return <div>{admin ? adminView() : notAdminView()}</div>
 }
 
 /**
@@ -99,7 +139,8 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    user: state.user
   }
 }
 const mapDispatch = dispatch => {

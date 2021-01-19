@@ -4,12 +4,13 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import PersonIcon from '@material-ui/icons/Person'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navbar">
     <Link to="/">
-      <img className="navbarLogo" src="/images/grapeshopperlogo.png" alt="" />
+      <img className="navbarLogo" src="/images/wineLogo.png" alt="" />
     </Link>
 
     <div className="headerNav">
@@ -25,18 +26,26 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       </Link>
 
-      <Link to="/login">
-        <div className="headerProfile">
-          <PersonIcon />
-        </div>
-      </Link>
-
       <Link style={{textDecoration: 'none'}} to="/cart">
         <div className="headerCart">
           <ShoppingCartIcon />
           <span className="headerOptionLineTwo headerCartCount">0</span>
         </div>
       </Link>
+
+      {isLoggedIn ? (
+        <Link onClick={() => handleClick()}>
+          <div className="headerLogout">
+            <ExitToAppIcon />
+          </div>
+        </Link>
+      ) : (
+        <Link to="/login">
+          <div className="headerProfile">
+            <PersonIcon />
+          </div>
+        </Link>
+      )}
     </div>
   </div>
 )
