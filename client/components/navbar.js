@@ -10,7 +10,7 @@ import PersonIcon from '@material-ui/icons/Person'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navbar">
     <Link to="/">
-      <img className="navbarLogo" src="/images/wineLogo.png" alt="" />
+      <img className="navbarLogo" src="/images/logowhite.png" alt="" />
     </Link>
 
     <div className="headerNav">

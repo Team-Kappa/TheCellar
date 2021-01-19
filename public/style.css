@@ -26,11 +26,15 @@ html {
 }
 
 .navbarLogo {
-  width: 70px;
-  object-fit: contain;
-  margin: auto;
+  width: 75px;
+
+  /* object-fit: contain; */
+  margin-right: auto;
   padding: auto;
-  /* transform: rotate(320deg); */
+}
+
+.headerCart > .MuiSvgIcon-root:hover {
+  color: Black;
 }
 
 .headerNav {
