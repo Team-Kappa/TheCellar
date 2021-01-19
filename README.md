@@ -1,4 +1,4 @@
-# Grape Shopper
+# The Cellar
 Team Kappa's GraceShopper project - e-commerce application 
 
 Authors:
