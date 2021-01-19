@@ -66,29 +66,29 @@ function SingleWine(props) {
     }
   }
 
-  const handleAddCart = () => {
+  const handleAddCart = async () => {
     console.log('hello')
     //quantity, price, wineid, userid
     const quantity = state.count
-    const price = state.total / 100
+    const price = state.total
     const wineId = state.wineId
     const userId = user.id
 
-    // const res = userId
-    //   ? await axios.post(`/api/orderDetails/`, {
-    //       userId: user.id,
-    //       productId: wineId,
-    //       productQuantity: quantity,
-    //       productPrice: price,
-    //     })
-    //   : undefined
-    // console.log('hello', res)
-    itemToCart({
-      quantity,
-      price,
-      wineId,
-      userId
-    })
+    const res = userId
+      ? await axios.post(`/api/orderDetails/`, {
+          userId: user.id,
+          productId: wineId,
+          productQuantity: quantity,
+          productPrice: price
+        })
+      : undefined
+    console.log('hello', res)
+    //  itemToCart({
+    //   quantity,
+    //   price,
+    //   wineId,
+    //   userId,
+    // })
     console.log('helllo to cart')
   }
 
