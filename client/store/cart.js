@@ -48,7 +48,6 @@ export const cartInfo = userId => async dispatch => {
  * REDUCER
  */
 export default function(state = defaultCart, action) {
-  console.log(action)
   switch (action.type) {
     case ADD_TO_CART:
       return {...state, cart: [...state.cart, action.item]}
