@@ -416,3 +416,10 @@ hr {
   margin-top: 10px;
   margin-bottom: 10px;
 } */
+
+.AddWine_Title {
+  font-size: 50px;
+  font-family: Apple Chancery, cursive;
+  margin-bottom: 10px;
+  justify-content: center;
+}
