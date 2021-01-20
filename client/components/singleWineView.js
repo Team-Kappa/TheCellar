@@ -9,7 +9,6 @@ import {itemToCart} from '../store/cart'
 
 function SingleWine(props) {
   //STATE
-
   const [state, setState] = useState({
     wineId: props.match.params.wineId,
     count: 0,
@@ -20,19 +19,16 @@ function SingleWine(props) {
     state => (state.product.singleWine ? state.product.singleWine : {})
   )
 
-  const data = useSelector(state => state)
-  console.log('im the data', data)
-
   const {name, price, type, year, origin, description} = singleWine
 
   const user = useSelector(state => state.user)
 
-  const wineId = props.match.params.wineId
+  // const wineId = props.match.params.wineId
   const dispatch = useDispatch()
   useEffect(
     () => {
       async function getWines() {
-        await dispatch(fetchSingleWines(wineId))
+        await dispatch(fetchSingleWines(state.wineId))
       }
       getWines()
 
@@ -67,7 +63,6 @@ function SingleWine(props) {
   }
 
   const handleAddCart = async () => {
-    console.log('hello')
     //quantity, price, wineid, userid
     const quantity = state.count
     const price = state.total
@@ -82,14 +77,6 @@ function SingleWine(props) {
           productPrice: price
         })
       : undefined
-    console.log('hello', res)
-    //  itemToCart({
-    //   quantity,
-    //   price,
-    //   wineId,
-    //   userId,
-    // })
-    console.log('helllo to cart')
   }
 
   return (
