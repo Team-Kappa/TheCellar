@@ -71,7 +71,7 @@ export const UserHome = props => {
     }
     getWines()
   }, dispatch)
-
+  console.log('PRODUCT --> ', product)
   const displayWines = wineData => {
     return wineData.map(wine => {
       return (

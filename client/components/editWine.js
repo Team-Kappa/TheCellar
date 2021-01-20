@@ -7,10 +7,8 @@ import {
   TextField,
   Container,
   Button,
-  Link,
   Select,
   MenuItem,
-  InputLabel,
   FormHelperText
 } from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
@@ -229,7 +227,10 @@ const EditWine = props => {
           onClick={handleSubmit}
           variant="contained"
         >
-          Save
+          Update
+        </Button>
+        <Button className={classes.button} href="/admin" variant="contained">
+          Cancel
         </Button>
         {/* {error && error.response && <div> {error.response.data} </div>} */}
       </form>
