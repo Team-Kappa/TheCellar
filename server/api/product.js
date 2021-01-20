@@ -45,4 +45,14 @@ router.delete('/:wineId', async (req, res, next) => {
   }
 })
 
+//PUT wine
+router.put('/:wineId', async (req, res, next) => {
+  try {
+    console.log('hello', req.params.wineId)
+    // console.log(req)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router

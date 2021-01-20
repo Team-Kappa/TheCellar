@@ -44,7 +44,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/admin" component={UserHome} />
             <Route exact path="/addwine" component={AddWine} />
-            <Route exact path="/editwine" component={EditWine} />
+            <Route exact path="/editwine/:wineId" component={EditWine} />
           </Switch>
         )}
         <Route component={NotFound} />

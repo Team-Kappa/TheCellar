@@ -138,6 +138,7 @@ const AuthForm = props => {
               helperText="Password field is required"
               variant="outlined"
               required
+              type={name === 'login' ? 'password' : 'text'}
             />
           </FormControl>
           <Button
@@ -151,7 +152,11 @@ const AuthForm = props => {
         </form>
       </Container>
       {/* <Link href="/auth/google">{displayName} with Google</Link> */}
-      {name === 'login' ? <Link href="/signup">Sign up</Link> : null}
+      {name === 'login' ? (
+        <Link href="/signup">Sign up</Link>
+      ) : (
+        <Link href="/login">Login</Link>
+      )}
     </Container>
   )
 }

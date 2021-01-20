@@ -67,6 +67,39 @@ export const deleteWine = wine => async dispatch => {
   }
 }
 
+// export const updateWine = (wine) => {
+//   return async (dispatch) => {
+//     try {
+//       const res = await axios.put(`/api/wines/${wine.wineId}`, wine)
+//       const updated = res.data
+//       dispatch(setWines(updated))
+//     } catch (error) {
+
+//     }
+//   }
+// }
+
+export const postWine = wine => async dispatch => {
+  try {
+    console.log(wine)
+    const wineDetails = {
+      name: wine.name,
+      price: wine.price,
+      year: wine.year,
+      origin: wine.origin,
+      description: wine.description,
+      type: wine.type,
+      imageUrl: wine.imageUrl
+    }
+    console.log(wine.wineId)
+    const res = await axios.put(`/api/wines/${wine.wineId}`, wineDetails)
+    // const wines = await axios.get('/api/wines')
+    // console.log(wines)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /**
  * REDUCER
  */
