@@ -1,7 +1,8 @@
 import React from 'react'
 import CurrencyFormat from 'react-currency-format'
 
-function Subtotal() {
+function Subtotal(props) {
+  console.log(props)
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -10,7 +11,8 @@ function Subtotal() {
             <p>Cart Totals</p>
 
             <p>
-              Subtotal (0 items) : <strong>0</strong>
+              Subtotal ({props.quantity} items) :{' '}
+              <strong>${props.price / 100}</strong>
             </p>
             <small className="subtotalCoupon">
               <input type="checkout" /> Add coupon code

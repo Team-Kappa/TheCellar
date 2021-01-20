@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
@@ -6,6 +7,7 @@ import axios from 'axios'
 const SET_WINE = 'SET_WINE'
 const SET_SINGLEWINE = 'SET_SINGLEWINE'
 const ADD_WINE = 'ADD_WINE'
+
 /**
  * INITIAL STATE
  */
@@ -24,10 +26,6 @@ const setSingleWine = singleWine => ({
   type: SET_SINGLEWINE,
   singleWine
 })
-// //Add new wine
-// const addWine = (newWine) => ({
-//   type: ADD_WINE, newWine
-// })
 
 /**
  * THUNK CREATORS
@@ -40,6 +38,7 @@ export const fetchWines = () => async dispatch => {
     console.log(err)
   }
 }
+
 export const fetchSingleWines = id => async dispatch => {
   try {
     const res = await axios.get(`/api/wines/${id}`)
@@ -51,10 +50,35 @@ export const fetchSingleWines = id => async dispatch => {
 
 export const createWine = newWine => async dispatch => {
   try {
-    const res = await axios.post(`/api/wines`, newWine)
-    dispatch(fetchWines(res.data || defaultWine))
+    await axios.post(`/api/wines`, newWine)
+    const res = await axios.get('/api/wines')
+    dispatch(setWines(res.data || defaultWine))
+    history.push('/admin')
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const deleteWine = wine => async dispatch => {
+  try {
+    await axios.delete(`/api/wines/${wine.id}`)
+    const res = await axios.get('/api/wines')
+    dispatch(setWines(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateWine = wine => {
+  return async dispatch => {
+    try {
+      await axios.put(`/api/wines/${wine.wineId}`, wine)
+      const res = await axios.get('/api/wines')
+      dispatch(setWines(res.data))
+      history.push('/admin')
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -69,6 +93,7 @@ export default function(state = defaultWine, action) {
       return {...state, singleWine: action.singleWine}
     case ADD_WINE:
       return {...state, newWine: action.newWine}
+
     default:
       return state
   }

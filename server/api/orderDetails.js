@@ -16,6 +16,7 @@ router.get('/:userId/:orderId', async (req, res, next) => {
     const orders = await Order.findOne({
       where: {
         userId: req.params.userId,
+        // id: req.params.orderId,
         isCompleted: false
       },
       include: [Product]

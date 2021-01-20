@@ -64,19 +64,25 @@ function SingleWine(props) {
 
   const handleAddCart = async () => {
     //quantity, price, wineid, userid
-    const quantity = state.count
-    const price = state.total
-    const wineId = state.wineId
-    const userId = user.id
-
-    const res = userId
-      ? await axios.post(`/api/orderDetails/`, {
-          userId: user.id,
-          productId: wineId,
-          productQuantity: quantity,
-          productPrice: price
-        })
-      : undefined
+    try {
+      const quantity = state.count
+      const price = state.total
+      const wineId = state.wineId
+      const userId = user.id
+      console.log(userId)
+      console.log('response', res)
+      const res = userId
+        ? await axios.post(`/api/orderDetails/`, {
+            userId: user.id,
+            productId: wineId,
+            productQuantity: quantity,
+            productPrice: price
+          })
+        : undefined
+      //console.log('response', res)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
