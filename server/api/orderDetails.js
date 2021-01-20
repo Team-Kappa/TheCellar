@@ -11,12 +11,12 @@ router.get('/', async (req, res, next) => {
   }
 })
 //GETTING USER ID & SPECIFIED ORDER ID
-router.get('/:userId/:orderId', async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
     const orders = await Order.findOne({
       where: {
         userId: req.params.userId,
-        id: req.params.orderId,
+        // id: req.params.orderId,
         isCompleted: false
       },
       include: [Product]

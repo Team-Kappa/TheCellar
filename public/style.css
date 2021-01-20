@@ -416,3 +416,11 @@ hr {
   margin-top: 10px;
   margin-bottom: 10px;
 } */
+
+/* CART */
+.itemContainer {
+  display: flex;
+}
+.itemContainer > img {
+  height: 10vh;
+}
