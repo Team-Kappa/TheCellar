@@ -34,7 +34,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       </Link>
 
       {isLoggedIn ? (
-        <Link onClick={() => handleClick()}>
+        <Link to="/login" onClick={() => handleClick()}>
           <div className="headerLogout">
             <ExitToAppIcon />
           </div>
