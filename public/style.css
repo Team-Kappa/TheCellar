@@ -423,3 +423,11 @@ hr {
   margin-bottom: 10px;
   justify-content: center;
 }
+
+/* CART */
+.itemContainer {
+  display: flex;
+}
+.itemContainer > img {
+  height: 10vh;
+}

@@ -34,14 +34,12 @@ export const auth = (email, password, username, method) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {email, password, username})
-    console.log(method)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
 
   try {
     dispatch(getUser(res.data))
-    console.log(res.data)
     res.data.admin == true ? history.push('/admin') : history.push('/wines')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
