@@ -92,7 +92,8 @@ export const postWine = wine => async dispatch => {
       imageUrl: wine.imageUrl
     }
     console.log(wine.wineId)
-    const res = await axios.put(`/api/wines/${wine.wineId}`, wineDetails)
+    const res = await axios.put(`/api/wines/${wine.wineId}`)
+    console.log(res)
     // const wines = await axios.get('/api/wines')
     // console.log(wines)
   } catch (error) {
