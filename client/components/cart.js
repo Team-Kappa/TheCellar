@@ -1,10 +1,34 @@
-import {connect, useSelector} from 'react-redux'
-import React, {useState} from 'react'
+import {connect, useSelector, useDispatch} from 'react-redux'
+import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
+import {fetchOrder} from '../store/order'
+import {cartInfo} from '../store/cart'
 
-function Cart() {
-  const cart = useSelector(state => state.cart.cart)
-  console.log(cart)
+function Cart(props) {
+  //console.log('my props:', props)
+  const cartState = useSelector(state => state)
+  //console.log('I am the state', cartState)
+
+  const user = cartState.user
+
+  const userId = user.id
+  const dispatch = useDispatch()
+
+  useEffect(
+    () => {
+      function getCartInfo() {
+        //console.log('hello from getcartinfo')
+        dispatch(cartInfo(userId))
+        //console.log('hello from after dispatch')
+      }
+      getCartInfo()
+    },
+    [userId]
+  )
+  const cartArr = cartState.cart.cart[0]
+    ? cartState.cart.cart[0]
+    : {products: []}
+  console.log('our information???', cartArr.products)
   return (
     <>
       <div className="cart">
@@ -15,9 +39,21 @@ function Cart() {
 
         <div className="cartLeft">
           <div className="cart-CardItems">
-            <h1>My Items</h1>
+            <h2>My Items</h2>
             {/* <img src="/images/defaultwine.png" alt="" /> */}
             {/* if cart is empty render "no items" */}
+            {cartArr.products.map((items, index) => (
+              <div key={index} className="itemContainer">
+                <h1 className="itemName">{items.name}</h1>
+                <h1 className="itemPrice">
+                  {items.orderDetails.productPrice / 100}
+                </h1>
+                <h1 className="itemQuantity">
+                  {items.orderDetails.productQuantity}
+                </h1>
+                <img src={items.imageUrl} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -28,9 +64,5 @@ function Cart() {
     </>
   )
 }
-
-const mapState = state => {}
-
-const mapDispatchToProps = dispatch => {}
 
 export default Cart

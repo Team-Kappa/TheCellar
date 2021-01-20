@@ -4,12 +4,12 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const ADD_TO_CART = 'ADD_TO_CART'
-const GET_CART_INFO = 'GET_CART_INFO'
+const POST_INFO = 'POST_INFO'
 /**
  * INITIAL STATE
  */
 const defaultCart = {
-  cart: ['hello', 'hello']
+  cart: []
 } //orders?
 
 /**
@@ -21,13 +21,13 @@ const addToCart = item => ({
   item
 })
 
-const getCartInfo = id => ({
-  type: GET_CART_INFO,
-  id
+const postCartInfo = cart => ({
+  type: POST_INFO,
+  cart
 })
 ////THUNK
 
-export const itemToToCart = item => async dispatch => {
+export const itemToCart = item => async dispatch => {
   try {
     //  const res = await axios.get(`/api/wines/${id}`)
     dispatch(addToCart(item))
@@ -37,13 +37,30 @@ export const itemToToCart = item => async dispatch => {
 }
 
 export const cartInfo = userId => async dispatch => {
+  console.log('Backend cartinfo', userId)
   try {
     const res = await axios.get(`/api/orderDetails/${userId}`)
-    dispatch(getCartInfo(userId))
+    dispatch(addToCart(res.data))
   } catch (err) {
     console.log(err)
   }
 }
+
+// export const postInfo =(info) => (dispatch)
+//   => {
+//   try {
+//     const res = await axios.post(`/api/orderDetails/`, {
+//             userId: req.body.user.id,
+//             productId: req.body.wineId,
+//             productQuantity: req.body.quantity,
+//             productPrice: req.body.price,
+//     })
+//     dispatch(postCartInfo(res.data))
+//   } catch (err) {
+//     console.log(err)
+//   }
+//  }
+
 /**
  * REDUCER
  */
@@ -51,8 +68,6 @@ export default function(state = defaultCart, action) {
   switch (action.type) {
     case ADD_TO_CART:
       return {...state, cart: [...state.cart, action.item]}
-    case GET_CART_INFO:
-      return {...state, orderdetails: action.id}
     default:
       return state
   }
