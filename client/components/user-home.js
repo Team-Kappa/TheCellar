@@ -71,12 +71,12 @@ export const UserHome = props => {
     }
     getWines()
   }, dispatch)
-
+  console.log('PRODUCT --> ', product)
   const displayWines = wineData => {
     return wineData.map(wine => {
       return (
         <div key={wine.id}>
-          <Link to={`/wines/${wine.id}`}>
+          <Link to={`/editwine/${wine.id}`}>
             <img className={classes.AllWineImage} src={wine.imageUrl} />
             <h3 className={classes.WineName}>{wine.name}</h3>
           </Link>
