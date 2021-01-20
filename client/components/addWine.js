@@ -1,102 +1,224 @@
-import React, {Component} from 'react'
-import Button from '@material-ui/core/Button'
+import React from 'react'
 import {createWine} from '../store/product'
-import {connect} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
-const defaultState = {
-  name: '',
-  price: 0,
-  type: null,
-  year: '',
-  origin: '',
-  description: '',
-  imageUrl: '/images/defaultwine.png'
-}
+//Material UI
+import {
+  FormControl,
+  TextField,
+  Container,
+  Button,
+  Select,
+  MenuItem,
+  FormHelperText
+} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 
-class AddWine extends Component {
-  constructor(props) {
-    super(props)
-    this.state = defaultState
+const useStyles = makeStyles({
+  root: {
+    width: '48vh',
+    alignContent: 'center',
+    marginTop: '5%',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    fontFamily: 'Lobster Two, cursive',
+    color: '#5b0e2d'
+  },
+  title: {
+    alignContent: 'center'
+  },
+  form: {
+    backgroundColor: 'white',
+    padding: '5%',
+    borderRadius: '5%',
+    margin: '5%',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
+  formElm: {
+    paddingBottom: '2%'
+  },
+  button: {
+    backgroundColor: '#5b0e2d',
+    color: '#ffa781',
+    marginBottom: '2%',
+    marginTop: '2%'
   }
+})
 
-  handleChange(event) {
+const AddWine = () => {
+  const dispatch = useDispatch()
+  const [state, setState] = React.useState({
+    name: '',
+    price: 0,
+    type: '',
+    year: 0,
+    origin: '',
+    description: '',
+    imageUrl: '/images/defaultwine.png',
+    errorName: false,
+    errorPrice: false,
+    errorType: false,
+    errorYear: false
+  })
+
+  const handleChange = event => {
     event.persist()
-    const {name, value} = event.target
-    this.setState(prevState => ({
+    setState(prevState => ({
       ...prevState,
-      [name]: value
+      [event.target.name]: event.target.value
     }))
   }
 
-  handleSubmit(event) {
-    try {
-      this.props.addWine({...this.state})
-    } catch (error) {
-      console.log(error)
+  const handleSubmit = () => {
+    const name = state.name
+    const price = state.price
+    const type = state.type
+    const year = state.year
+    if (name && price && type && year) {
+      dispatch(createWine({...state}))
+      setState({
+        name: '',
+        price: 0,
+        type: '',
+        year: 0,
+        origin: '',
+        description: '',
+        imageUrl: '/images/defaultwine.png',
+        errorName: false,
+        errorPrice: false,
+        errorType: false,
+        errorYear: false
+      })
+    } else {
+      setState({
+        ...state,
+        errorName: state.name === '',
+        errorPrice: state.price === 0,
+        errorType: state.type === '',
+        errorYear: state.year === 0
+      })
+      console.log('err', state)
     }
   }
+  const errorName = state.errorName
+  const errorPrice = state.errorPrice
+  const errorType = state.errorType
+  const errorYear = state.errorYear
+  const classes = useStyles()
+  return (
+    <Container className={classes.root}>
+      <h1 className="AddWine_Title">ADD NEW WINE</h1>
+      <form className={classes.form} onSubmit={handleSubmit}>
+        <FormControl>
+          <TextField
+            error={errorName}
+            label="Wine Name"
+            id="name"
+            name="name"
+            onChange={handleChange}
+            className={classes.formElm}
+            helperText="Wine Name field is required"
+            variant="outlined"
+            required
+          />
+        </FormControl>
 
-  render() {
-    return (
-      <div className="WINEFORM">
-        <form id="wine-form">
-          <h1>ADD NEW WINE</h1>
-          <form>
-            <label htmlFor="name">Wine Name: </label>
-            <input name="name" onChange={this.handleChange.bind(this)} />
-          </form>
+        <FormControl>
+          <TextField
+            error={errorPrice}
+            label="Price"
+            id="price"
+            name="price"
+            onChange={handleChange}
+            className={classes.formElm}
+            helperText="Price field is required"
+            variant="outlined"
+            required
+          />
+        </FormControl>
 
-          <form>
-            <label htmlFor="price">Price: </label>
-            <input name="price" onChange={this.handleChange.bind(this)} />
-          </form>
+        <FormControl>
+          <Select
+            error={errorType}
+            label="Wine Type"
+            id="type"
+            name="type"
+            onChange={handleChange}
+            className={classes.formElm}
+            variant="outlined"
+            required
+          >
+            <MenuItem value="Reds">Reds</MenuItem>
+            <MenuItem value="Whites">Whites</MenuItem>
+            <MenuItem value="Sparkling">Sparkling</MenuItem>
+            <MenuItem value="Rose">Rose</MenuItem>
+            <MenuItem value="Fruit">Fruit</MenuItem>
+          </Select>
+          <FormHelperText classNam e={classes.formElm}>
+            Type field is required
+          </FormHelperText>
+        </FormControl>
 
-          <form>
-            <label htmlFor="type">
-              Wine Type:
-              <select name="type" onChange={this.handleChange.bind(this)}>
-                <option value="choose">Select Wine Type</option>
-                <option value="Reds">Reds</option>
-                <option value="Whites">Whites</option>
-                <option value="Sparkling">Sparkling</option>
-                <option value="Rose">Rose</option>
-                <option value="Fruit">Fruit</option>
-              </select>
-            </label>
-          </form>
+        <FormControl>
+          <TextField
+            error={errorYear}
+            label="Year"
+            id="year"
+            name="year"
+            onChange={handleChange}
+            className={classes.formElm}
+            helperText="Year field is required"
+            variant="outlined"
+            required
+          />
+        </FormControl>
 
-          <form>
-            <label htmlFor="year">Year: </label>
-            <input name="year" onChange={this.handleChange.bind(this)} />
-          </form>
+        <FormControl>
+          <TextField
+            label="Origin"
+            id="origin"
+            name="origin"
+            onChange={handleChange}
+            className={classes.formElm}
+            variant="outlined"
+          />
+        </FormControl>
 
-          <form>
-            <label htmlFor="origin">Origin: </label>
-            <input name="origin" onChange={this.handleChange.bind(this)} />
-          </form>
+        <FormControl>
+          <TextField
+            label="Description"
+            id="description"
+            name="description"
+            onChange={handleChange}
+            className={classes.formElm}
+            variant="outlined"
+          />
+        </FormControl>
 
-          <form>
-            <label htmlFor="description">Description: </label>
-            <input name="description" onChange={this.handleChange.bind(this)} />
-          </form>
-
-          <form>
-            <label htmlFor="imageUrl">Image URL: </label>
-            <input name="imageUrl" onChange={this.handleChange.bind(this)} />
-          </form>
-
-          <Button onClick={this.handleSubmit.bind(this)}>Add Wine</Button>
-          <Button href="/home">Cancel</Button>
-        </form>
-      </div>
-    )
-  }
+        <FormControl>
+          <TextField
+            label="Image URL"
+            id="imageUrl"
+            name="imageUrl"
+            onChange={handleChange}
+            className={classes.formElm}
+            variant="outlined"
+            placeholder="/images/defaultwine.png"
+          />
+        </FormControl>
+        <Button className={classes.button} onClick={handleSubmit}>
+          Add Wine
+        </Button>
+        {/* {error && error.response && <div> {error.response.data} </div>} */}
+        <Button className={classes.button} href="/admin">
+          Cancel
+        </Button>
+      </form>
+    </Container>
+  )
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addWine: newWine => dispatch(createWine(newWine))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(AddWine)
+export default AddWine
