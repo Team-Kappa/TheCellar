@@ -3,7 +3,15 @@ import {createWine} from '../store/product'
 import {useDispatch} from 'react-redux'
 
 //Material UI
-import {FormControl, TextField, Container, Button} from '@material-ui/core'
+import {
+  FormControl,
+  TextField,
+  Container,
+  Button,
+  Select,
+  MenuItem,
+  FormHelperText
+} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -37,9 +45,6 @@ const useStyles = makeStyles({
     color: '#ffa781',
     marginBottom: '2%',
     marginTop: '2%'
-    // justifyContent: 'center',
-    // alignContent: 'center',
-    // width: '30vh'
   }
 })
 
@@ -66,14 +71,6 @@ const AddWine = () => {
       [event.target.name]: event.target.value
     }))
   }
-
-  // const handleSubmit = () => {
-  //   try {
-  //     dispatch(createWine({...state}))
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   const handleSubmit = () => {
     const name = state.name
@@ -103,6 +100,7 @@ const AddWine = () => {
         errorType: state.type === '',
         errorYear: state.year === 0
       })
+      console.log('err', state)
     }
   }
   const errorName = state.errorName
@@ -143,19 +141,25 @@ const AddWine = () => {
         </FormControl>
 
         <FormControl>
-          <TextField
+          <Select
             error={errorType}
             label="Wine Type"
             id="type"
             name="type"
             onChange={handleChange}
             className={classes.formElm}
-            helperText="Wine Type field is required"
             variant="outlined"
             required
-            multiline
-            placeholder="Reds, Whites, Sparkling, Rose, Fruit"
-          />
+          >
+            <MenuItem value="Reds">Reds</MenuItem>
+            <MenuItem value="Whites">Whites</MenuItem>
+            <MenuItem value="Sparkling">Sparkling</MenuItem>
+            <MenuItem value="Rose">Rose</MenuItem>
+            <MenuItem value="Fruit">Fruit</MenuItem>
+          </Select>
+          <FormHelperText classNam e={classes.formElm}>
+            Type field is required
+          </FormHelperText>
         </FormControl>
 
         <FormControl>
@@ -202,13 +206,13 @@ const AddWine = () => {
             onChange={handleChange}
             className={classes.formElm}
             variant="outlined"
-            multiline
             placeholder="/images/defaultwine.png"
           />
         </FormControl>
         <Button className={classes.button} onClick={handleSubmit}>
           Add Wine
         </Button>
+        {/* {error && error.response && <div> {error.response.data} </div>} */}
         <Button className={classes.button} href="/admin">
           Cancel
         </Button>
