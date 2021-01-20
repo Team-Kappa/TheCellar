@@ -47,9 +47,10 @@ router.delete('/:wineId', async (req, res, next) => {
 
 //PUT wine
 router.put('/:wineId', async (req, res, next) => {
+  console.log('GOT INTO ROUTER')
   try {
-    console.log('hello', req.params.wineId)
-    // console.log(req)
+    const wine = await Product.findByPk(req.params.wineId)
+    res.send(await wine.update(req.body))
   } catch (error) {
     next(error)
   }

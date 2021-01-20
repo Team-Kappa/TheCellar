@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {fetchSingleWines, postWine} from '../store/product'
+import {fetchSingleWines, updateWine} from '../store/product'
 
 //Material UI
 import {
@@ -113,7 +113,7 @@ const EditWine = props => {
 
   //handle submit function - Submiting form
   const handleSubmit = () => {
-    dispatch(postWine(state))
+    dispatch(updateWine(state))
   }
 
   //Form template
