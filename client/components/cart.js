@@ -2,7 +2,7 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
 import {fetchOrder} from '../store/order'
-import {cartInfo} from '../store/cart'
+import cart, {cartInfo} from '../store/cart'
 
 function Cart(props) {
   //console.log('my props:', props)
@@ -28,7 +28,17 @@ function Cart(props) {
   const cartArr = cartState.cart.cart[0]
     ? cartState.cart.cart[0]
     : {products: []}
-  console.log('our information???', cartArr.products)
+  // console.log('our information???', cartArr.products)
+
+  let cartPrice = cartArr.products.reduce(function(a, c) {
+    return c.orderDetails.productPrice + a
+  }, 0)
+
+  let cartQuantity = cartArr.products.reduce(function(a, c) {
+    return c.orderDetails.productQuantity + a
+  }, 0)
+
+  console.log('our  quantity', cartArr.products.productQuantity)
   return (
     <>
       <div className="cart">
@@ -44,22 +54,27 @@ function Cart(props) {
             {/* if cart is empty render "no items" */}
             {cartArr.products.map((items, index) => (
               <div key={index} className="itemContainer">
-                <h1 className="itemName">{items.name}</h1>
-                <h1 className="itemPrice">
-                  {items.orderDetails.productPrice / 100}
-                </h1>
-                <h1 className="itemQuantity">
-                  {items.orderDetails.productQuantity}
-                </h1>
-                <img src={items.imageUrl} />
+                <div className="item_card">
+                  <img src={items.imageUrl} />
+                  <h1 className="itemName">{items.name}</h1>
+                  <h1 className="itemPrice">
+                    {items.orderDetails.productPrice / 100}
+                  </h1>
+                  <h1 className="itemQuantity">
+                    {items.orderDetails.productQuantity}
+                  </h1>
+                </div>
+                {/* <Subtotal
+                  quantity={items.orderDetails.productQuantity}
+                  price={items.orderDetails.productPrice}
+                /> */}
               </div>
             ))}
           </div>
         </div>
       </div>
       <div className="cartRight">
-        {/* <h2>Cart totals</h2> */}
-        {/* <Subtotal /> */}
+        <Subtotal quantity={cartQuantity} price={cartPrice} />
       </div>
     </>
   )

@@ -40,6 +40,7 @@ export const cartInfo = userId => async dispatch => {
   console.log('Backend cartinfo', userId)
   try {
     const res = await axios.get(`/api/orderDetails/${userId}`)
+    console.log('im the resssss', res)
     dispatch(addToCart(res.data))
   } catch (err) {
     console.log(err)
