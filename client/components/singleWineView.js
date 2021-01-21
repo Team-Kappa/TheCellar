@@ -4,12 +4,12 @@ import {Link} from 'react-router-dom'
 import {fetchSingleWines} from '../store/product'
 import {me} from '../store/user'
 import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import {itemToCart} from '../store/cart'
+// import axios from 'axios'
+// import {itemToCart} from '../store/cart'
+import {postInfo} from '../store/cart'
 
 function SingleWine(props) {
   //STATE
-
   const [state, setState] = useState({
     wineId: props.match.params.wineId,
     count: 0,
@@ -24,12 +24,12 @@ function SingleWine(props) {
 
   const user = useSelector(state => state.user)
 
-  const wineId = props.match.params.wineId
+  // const wineId = props.match.params.wineId
   const dispatch = useDispatch()
   useEffect(
     () => {
       async function getWines() {
-        await dispatch(fetchSingleWines(wineId))
+        await dispatch(fetchSingleWines(state.wineId))
       }
       getWines()
 
@@ -66,21 +66,14 @@ function SingleWine(props) {
   const handleAddCart = async () => {
     //quantity, price, wineid, userid
     try {
-      const quantity = state.count
-      const price = state.total
-      const wineId = state.wineId
-      const userId = user.id
-      console.log(userId)
-      console.log('response', res)
-      const res = userId
-        ? await axios.post(`/api/orderDetails/`, {
-            userId: user.id,
-            productId: wineId,
-            productQuantity: quantity,
-            productPrice: price
-          })
-        : undefined
-      //console.log('response', res)
+      const infoObj = {
+        quantity: state.count,
+        price: state.total,
+        wineId: state.wineId,
+        userId: user.id
+      }
+
+      await dispatch(postInfo(infoObj))
     } catch (err) {
       console.log(err)
     }

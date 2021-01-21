@@ -2,12 +2,11 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
 import {fetchOrder} from '../store/order'
-import cart, {cartInfo} from '../store/cart'
+import {cartInfo, deleteAnItem} from '../store/cart'
 
 function Cart(props) {
-  //console.log('my props:', props)
   const cartState = useSelector(state => state)
-  //console.log('I am the state', cartState)
+  console.log('Store data', cartState.cart)
 
   const user = cartState.user
 
@@ -17,34 +16,42 @@ function Cart(props) {
   useEffect(
     () => {
       function getCartInfo() {
-        //console.log('hello from getcartinfo')
         dispatch(cartInfo(userId))
-        //console.log('hello from after dispatch')
       }
       getCartInfo()
     },
     [userId]
   )
-  const cartArr = cartState.cart.cart[0]
-    ? cartState.cart.cart[0]
-    : {products: []}
-  // console.log('our information???', cartArr.products)
 
-  let cartPrice = cartArr.products.reduce(function(a, c) {
+  const cartArr = cartState.cart.products ? cartState.cart.products : []
+
+  let cartPrice = cartArr.reduce(function(a, c) {
     return c.orderDetails.productPrice + a
   }, 0)
 
-  let cartQuantity = cartArr.products.reduce(function(a, c) {
+  let cartQuantity = cartArr.reduce(function(a, c) {
     return c.orderDetails.productQuantity + a
   }, 0)
 
-  console.log('our  quantity', cartArr.products.productQuantity)
+  const deleteClick = async event => {
+    await dispatch(
+      deleteAnItem({
+        userId: cartState.userId,
+        orderId: cartState.id,
+        productId: event.target.id
+      })
+    )
+  }
+
+  const updateClick = async event => {
+    console.log('clicked!')
+  }
   return (
     <>
       <div className="cart">
         <img className="cartAd" src="/images/winerow.jpg" alt="" />
         <div className="cartTitle">
-          <h2>Cart</h2>
+          <h1>Cart</h1>
         </div>
 
         <div className="cartLeft">
@@ -52,22 +59,29 @@ function Cart(props) {
             <h2>My Items</h2>
             {/* <img src="/images/defaultwine.png" alt="" /> */}
             {/* if cart is empty render "no items" */}
-            {cartArr.products.map((items, index) => (
+            {cartArr.map((items, index) => (
               <div key={index} className="itemContainer">
                 <div className="item_card">
                   <img src={items.imageUrl} />
-                  <h1 className="itemName">{items.name}</h1>
-                  <h1 className="itemPrice">
+                  <h3 className="itemName">{items.name}</h3>
+                  <h3 className="itemPrice">
                     {items.orderDetails.productPrice / 100}
-                  </h1>
-                  <h1 className="itemQuantity">
+                  </h3>
+
+                  <button type="button" onClick={updateClick}>
+                    -
+                  </button>
+                  <h3 className="itemQuantity">
                     {items.orderDetails.productQuantity}
-                  </h1>
+                  </h3>
+                  <button type="button" onClick={updateClick}>
+                    +
+                  </button>
+
+                  <button type="button" onClick={deleteClick} id={items.id}>
+                    X
+                  </button>
                 </div>
-                {/* <Subtotal
-                  quantity={items.orderDetails.productQuantity}
-                  price={items.orderDetails.productPrice}
-                /> */}
               </div>
             ))}
           </div>

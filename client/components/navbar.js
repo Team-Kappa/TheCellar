@@ -6,13 +6,14 @@ import {logout} from '../store'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import PersonIcon from '@material-ui/icons/Person'
+// import {QueryTypes} from 'sequelize/types'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, quantity}) => (
   <div className="navbar">
+    {console.log('what is this', quantity)}
     <Link to="/">
       <img className="navbarLogo" src="/images/logowhite.png" alt="" />
     </Link>
-
     <div className="headerNav">
       <Link style={{textDecoration: 'none'}} to="/wines">
         <div className="headerOption">
@@ -29,7 +30,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       <Link style={{textDecoration: 'none'}} to="/cart">
         <div className="headerCart">
           <ShoppingCartIcon />
-          <span className="headerOptionLineTwo headerCartCount">0</span>
+          <span className="headerOptionLineTwo headerCartCount" />
         </div>
       </Link>
 
