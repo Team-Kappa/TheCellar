@@ -11,18 +11,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 //GETTING USER ID & SPECIFIED ORDER ID
-router.get('/:userId/:orderId', async (req, res, next) => {
+router.get('/:userId/', async (req, res, next) => {
   try {
     const orders = await Order.findOne({
       where: {
         userId: req.params.userId,
-        // id: req.params.orderId,
+
         isCompleted: false
       },
       include: [Product]
     })
     const data = await orders.getProducts()
-    // console.log('Object.keys', Object.keys(order.prototype))
+
     res.json(orders)
   } catch (err) {
     next(err)
@@ -46,6 +46,21 @@ router.post('/', async (req, res, next) => {
         productPrice: req.body.productPrice
       }
     })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/', async (req, res, next) => {
+  try {
+    console.log('what is my backend request', req.params)
+    // let result = await OrderDetails.destroy({
+    //   where: {
+    //     // orderId: req.body.orderId,
+    //     // wineId: req.body.wineId,
+    //     // userId: req.body.userId,
+    //   },
+    // })
   } catch (err) {
     next(err)
   }

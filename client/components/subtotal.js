@@ -2,7 +2,6 @@ import React from 'react'
 import CurrencyFormat from 'react-currency-format'
 
 function Subtotal(props) {
-  console.log(props)
   return (
     <div className="subtotal">
       <CurrencyFormat

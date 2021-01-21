@@ -6,6 +6,7 @@ import {me} from '../store/user'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import {itemToCart} from '../store/cart'
+import {postInfo} from '../store/cart'
 
 function SingleWine(props) {
   //STATE
@@ -65,21 +66,14 @@ function SingleWine(props) {
   const handleAddCart = async () => {
     //quantity, price, wineid, userid
     try {
-      const quantity = state.count
-      const price = state.total
-      const wineId = state.wineId
-      const userId = user.id
-      console.log(userId)
-      console.log('response', res)
-      const res = userId
-        ? await axios.post(`/api/orderDetails/`, {
-            userId: user.id,
-            productId: wineId,
-            productQuantity: quantity,
-            productPrice: price
-          })
-        : undefined
-      //console.log('response', res)
+      const infoObj = {
+        quantity: state.count,
+        price: state.total,
+        wineId: state.wineId,
+        userId: user.id
+      }
+
+      await dispatch(postInfo(infoObj))
     } catch (err) {
       console.log(err)
     }

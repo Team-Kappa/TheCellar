@@ -5,12 +5,11 @@ import axios from 'axios'
  */
 const ADD_TO_CART = 'ADD_TO_CART'
 const POST_INFO = 'POST_INFO'
+const DELETE_ITEM = 'DELETE_ITEM'
 /**
  * INITIAL STATE
  */
-const defaultCart = {
-  cart: []
-} //orders?
+const defaultCart = {}
 
 /**
  * ACTION CREATORS
@@ -21,12 +20,12 @@ const addToCart = item => ({
   item
 })
 
-const postCartInfo = cart => ({
-  type: POST_INFO,
-  cart
+const deleteItem = id => ({
+  type: DELETE_ITEM,
+  id
 })
-////THUNK
 
+////THUNK
 export const itemToCart = item => async dispatch => {
   try {
     //  const res = await axios.get(`/api/wines/${id}`)
@@ -37,30 +36,39 @@ export const itemToCart = item => async dispatch => {
 }
 
 export const cartInfo = userId => async dispatch => {
-  console.log('Backend cartinfo', userId)
   try {
     const res = await axios.get(`/api/orderDetails/${userId}`)
-    console.log('im the resssss', res)
     dispatch(addToCart(res.data))
   } catch (err) {
     console.log(err)
   }
 }
 
-// export const postInfo =(info) => (dispatch)
-//   => {
-//   try {
-//     const res = await axios.post(`/api/orderDetails/`, {
-//             userId: req.body.user.id,
-//             productId: req.body.wineId,
-//             productQuantity: req.body.quantity,
-//             productPrice: req.body.price,
-//     })
-//     dispatch(postCartInfo(res.data))
-//   } catch (err) {
-//     console.log(err)
-//   }
-//  }
+export const postInfo = info => async dispatch => {
+  try {
+    const res = await axios.post(`/api/orderDetails/`, {
+      userId: info.userId,
+      productId: info.wineId,
+      productQuantity: info.quantity,
+      productPrice: info.price
+    })
+    dispatch(addToCart(res.data))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const deleteAnItem = info => async dispatch => {
+  try {
+    await axios.delete(`/api/orderDetails/`, {
+      userId: info.userId,
+      orderId: info.id,
+      productId: info.wineId
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 /**
  * REDUCER
@@ -68,7 +76,7 @@ export const cartInfo = userId => async dispatch => {
 export default function(state = defaultCart, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      return {...state, cart: [...state.cart, action.item]}
+      return action.item
     default:
       return state
   }
