@@ -2,12 +2,11 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
 import {fetchOrder} from '../store/order'
-import {cartInfo} from '../store/cart'
+import {cartInfo, deleteAnItem} from '../store/cart'
+import Button from '@material-ui/core/Button'
 
 function Cart(props) {
-  //console.log('my props:', props)
   const cartState = useSelector(state => state)
-  //console.log('I am the state', cartState)
 
   const user = cartState.user
 
@@ -17,24 +16,39 @@ function Cart(props) {
   useEffect(
     () => {
       function getCartInfo() {
-        //console.log('hello from getcartinfo')
         dispatch(cartInfo(userId))
-        //console.log('hello from after dispatch')
       }
       getCartInfo()
     },
     [userId]
   )
-  const cartArr = cartState.cart.cart[0]
-    ? cartState.cart.cart[0]
-    : {products: []}
-  console.log('our information???', cartArr.products)
+
+  const cartArr = cartState.cart.products ? cartState.cart.products : []
+
+  let cartPrice = cartArr.reduce(function(a, c) {
+    return c.orderDetails.productPrice + a
+  }, 0)
+
+  let cartQuantity = cartArr.reduce(function(a, c) {
+    return c.orderDetails.productQuantity + a
+  }, 0)
+
+  const deleteClick = async event => {
+    await dispatch(
+      deleteAnItem({
+        userId: cartState.cart.userId,
+        orderId: cartState.cart.id,
+        productId: Number(event.target.id)
+      })
+    )
+  }
+
   return (
     <>
       <div className="cart">
         <img className="cartAd" src="/images/winerow.jpg" alt="" />
         <div className="cartTitle">
-          <h2>Cart</h2>
+          <h1>Cart</h1>
         </div>
 
         <div className="cartLeft">
@@ -42,24 +56,41 @@ function Cart(props) {
             <h2>My Items</h2>
             {/* <img src="/images/defaultwine.png" alt="" /> */}
             {/* if cart is empty render "no items" */}
-            {cartArr.products.map((items, index) => (
-              <div key={index} className="itemContainer">
-                <h1 className="itemName">{items.name}</h1>
-                <h1 className="itemPrice">
-                  {items.orderDetails.productPrice / 100}
-                </h1>
-                <h1 className="itemQuantity">
-                  {items.orderDetails.productQuantity}
-                </h1>
-                <img src={items.imageUrl} />
-              </div>
-            ))}
+            {!cartArr.length ? (
+              <p>Please add some delicious wine to your cart! 🍷 </p>
+            ) : (
+              cartArr.map((items, index) => (
+                <div key={index} className="itemContainer">
+                  <div className="item_card">
+                    <img src={items.imageUrl} />
+                    <h3 className="itemName">{items.name}</h3>
+                    <h3 className="itemPrice">
+                      {items.orderDetails.productPrice / 100}
+                    </h3>
+
+                    <h3 className="itemQuantity">
+                      {items.orderDetails.productQuantity}
+                    </h3>
+                    <div>
+                      <button
+                        style={{backgroundColor: 'red'}}
+                        type="button"
+                        onClick={deleteClick}
+                        id={items.id}
+                        color="secondary"
+                      >
+                        X
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
       <div className="cartRight">
-        {/* <h2>Cart totals</h2> */}
-        {/* <Subtotal /> */}
+        <Subtotal quantity={cartQuantity} price={cartPrice} />
       </div>
     </>
   )
