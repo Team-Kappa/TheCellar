@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
 import {fetchOrder} from '../store/order'
 import {cartInfo, deleteAnItem} from '../store/cart'
-import Navbar from './navbar'
+import Button from '@material-ui/core/Button'
 
 function Cart(props) {
   const cartState = useSelector(state => state)
@@ -61,25 +61,35 @@ function Cart(props) {
             <h2>My Items</h2>
             {/* <img src="/images/defaultwine.png" alt="" /> */}
             {/* if cart is empty render "no items" */}
-            {cartArr.map((items, index) => (
-              <div key={index} className="itemContainer">
-                <div className="item_card">
-                  <img src={items.imageUrl} />
-                  <h3 className="itemName">{items.name}</h3>
-                  <h3 className="itemPrice">
-                    {items.orderDetails.productPrice / 100}
-                  </h3>
+            {!cartArr.length ? (
+              <p>Please add some delicious wine to your cart! 🍷 </p>
+            ) : (
+              cartArr.map((items, index) => (
+                <div key={index} className="itemContainer">
+                  <div className="item_card">
+                    <img src={items.imageUrl} />
+                    <h3 className="itemName">{items.name}</h3>
+                    <h3 className="itemPrice">
+                      {items.orderDetails.productPrice / 100}
+                    </h3>
 
-                  <h3 className="itemQuantity">
-                    {items.orderDetails.productQuantity}
-                  </h3>
-
-                  <button type="button" onClick={deleteClick} id={items.id}>
-                    X
-                  </button>
+                    <h3 className="itemQuantity">
+                      {items.orderDetails.productQuantity}
+                    </h3>
+                    <div className="All_button">
+                      <Button
+                        type="button"
+                        onClick={deleteClick}
+                        id={items.id}
+                        color="secondary"
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </div>

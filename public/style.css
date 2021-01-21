@@ -138,6 +138,7 @@ hr {
   justify-content: center;
   height: auto;
   width: 100%;
+  border-bottom: black 3px solid;
 }
 
 .All_Title {
@@ -204,17 +205,11 @@ hr {
 }
 
 .wine_info {
-  /* border: 1px black solid; */
-  /* margin: 5vh; */
   padding: 5vh;
-  /* text-align: center; */
   height: 10rem;
   width: 20rem;
 }
-/* .wine_info > h1 {
-  text-align: center;
-  font-size: 200%;
-} */
+
 .wine_info > ul {
   list-style-type: none;
   font-size: 120%;
@@ -226,9 +221,8 @@ hr {
   display: flex;
   margin: 30%;
   padding: 3%;
-  /* align-items: center;
-  margin-top: 35px;
-  margin-bottom: 65px; */
+  background-color: white;
+  border-radius: 15px;
 }
 .quantity > h1 {
   font-size: 250%;
@@ -274,30 +268,33 @@ hr {
   /* border-bottom: 1px solid lightgray; */
 }
 .cartLeft {
-  display: flex;
-  /* flex-direction: column; */
-  width: 40%;
-  /* width: 300px; */
-  /* height: 300px; */
   padding: 20px;
   background-color: #f3f3f3;
   border: 1px solid #dddddd;
   border-radius: 20px;
-  border: black 1px solid;
+  border: black 2px solid;
 }
-.cart-CardItems > h1 {
+
+.cart-CardItems > h2 {
   font-family: Apple Chancery, cursive;
+  text-align: center;
   font-size: 200%;
+  text-align: center;
+  margin-right: 10px;
+  padding: 10px;
 }
+.cart-CardItems > p {
+  font-size: 130%;
+}
+
 .cart-CardItems {
-  border: black 1px dotted;
   display: flex;
   flex-direction: column;
 }
 
 .cartRight {
-  flex-direction: column;
-  display: flex;
+  /* flex-direction: column;
+  display: flex; */
 }
 .subtotal {
   display: flex;
@@ -340,13 +337,19 @@ hr {
 }
 
 .item_card {
+  display: flex;
+  justify-content: space-evenly;
   border: 1px black solid;
+  border-radius: 25px;
   height: 10rem;
   width: 30rem;
+  padding-top: 5rem;
+  margin: 3rem;
 }
 
 .item_card > img {
   height: 10vh;
+  padding: auto;
 }
 
 /* CONTACT US */
@@ -367,6 +370,7 @@ hr {
   object-fit: cover;
   display: flex;
   justify-content: center;
+  border-bottom: black 3px solid;
 }
 
 .contact-container {
