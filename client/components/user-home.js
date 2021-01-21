@@ -60,18 +60,19 @@ const useStyles = makeStyles(() => ({
  */
 export const UserHome = props => {
   const {user} = props
-  console.log(props)
   const {admin} = user
   const dispatch = useDispatch()
   const {product} = useSelector(state => state)
+
   const classes = useStyles()
+
   useEffect(() => {
     async function getWines() {
       await dispatch(fetchWines())
     }
     getWines()
   }, dispatch)
-  console.log('PRODUCT --> ', product)
+
   const displayWines = wineData => {
     return wineData.map(wine => {
       return (

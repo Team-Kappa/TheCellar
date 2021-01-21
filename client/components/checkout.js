@@ -246,20 +246,15 @@ export class Checkout extends React.Component {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography>
-                  Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                  Integer sit amet egestas eros, vitae egestas augue. Duis vel
-                  est augue.
-                </Typography>
+                <div className="CHECKOUT_Summary_Box">
+                  <div className="CHECKOUT_OrderSummary">
+                    <h2>Order Summary</h2>
+                    <div>Item Name: Quantity: Order Total:</div>
+                    <Button>Place Your Order</Button>
+                  </div>
+                </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-          </div>
-        </div>
-        <div className="CHECKOUT_Summary_Box">
-          <div className="CHECKOUT_OrderSummary">
-            <h2>Order Summary</h2>
-            <div>Item Name: Quantity: Order Total:</div>
-            <Button>Place Your Order</Button>
           </div>
         </div>
       </div>
