@@ -22,7 +22,6 @@ router.get('/:userId', async (req, res, next) => {
       include: [Product]
     })
     const data = await orders.getProducts()
-    // console.log('Object.keys', Object.keys(order.prototype))
     res.json(orders)
   } catch (err) {
     next(err)
