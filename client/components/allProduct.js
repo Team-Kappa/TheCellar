@@ -1,34 +1,37 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, {useEffect, useState} from 'react'
 import {fetchWines} from '../store/product'
 import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import {connect, useDispatch} from 'react-redux'
 
-export class AllProduct extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      wineData: []
-    }
-  }
+const AllProduct = props => {
+  const {wines} = props
+  const dispatch = useDispatch()
+  const [currentWineList, setCurrentWineList] = useState([])
+  const buttonNames = ['ALL', 'REDS', 'WHITES', 'SPARKLING', 'ROSE', 'FRUIT']
 
-  //use default state from redux store
+  useEffect(
+    () => {
+      const getWines = async () => {
+        try {
+          await dispatch(fetchWines())
+        } catch (err) {
+          console.error(err)
+        }
+      }
+      getWines()
+    },
+    [wines === undefined]
+  )
 
-  componentDidMount() {
-    this.props.getWines()
-  }
+  useEffect(
+    () => {
+      setCurrentWineList(props.wines)
+    },
+    [!!wines && wines.length !== 0]
+  )
 
-  wineCategoryClickHandler = (buttonName, rawWineData) => {
-    const filteredWineData = rawWineData.filter(
-      wineData => wineData.type.toUpperCase() === buttonName
-    )
-
-    this.setState({
-      wineData: filteredWineData
-    })
-  }
-
-  displayWines = wineData => {
+  const displayWines = wineData => {
     return wineData.map(wine => {
       return (
         <div key={wine.id}>
@@ -41,50 +44,49 @@ export class AllProduct extends React.Component {
     })
   }
 
-  render() {
-    const wines = this.props.wines ? this.props.wines : []
-    const buttonNames = ['ALL', 'REDS', 'WHITES', 'SPARKLING', 'ROSE', 'FRUIT']
-
-    if (wines.length > 0 && this.state.wineData.length === 0) {
-      this.setState({
-        wineData: wines
-      })
-    }
-
-    return (
-      <div>
-        <img
-          className="All_Top_Image"
-          src="/images/allProductPageSmall.png"
-          alt="Null"
-        />
-
-        <h1 className="All_Title">OUR WINES</h1>
-        <div className="All_Horizontal">
-          <hr align="center" />
-        </div>
-        <div className="All_Button">
-          {buttonNames.map(singleButton => {
-            return (
-              <Button
-                size="large"
-                onClick={() =>
-                  this.wineCategoryClickHandler(singleButton, wines)
-                }
-                key={`${singleButton}`}
-              >
-                {singleButton}
-              </Button>
-            )
-          })}
-        </div>
-
-        <div className="All_Container">
-          {this.displayWines(this.state.wineData)}
-        </div>
-      </div>
+  const wineCategoryClickHandler = (buttonName, wineList) => {
+    const filteredWineList = wineList.filter(
+      wineData => wineData.type.toUpperCase() === buttonName
     )
+    if (buttonName !== 'ALL') {
+      setCurrentWineList(filteredWineList)
+    } else {
+      setCurrentWineList(wineList)
+    }
   }
+
+  const displayButtons = categoryButtons => {
+    return categoryButtons.map(singleButton => {
+      return (
+        <Button
+          size="large"
+          onClick={() => wineCategoryClickHandler(singleButton, wines)}
+          key={`${singleButton}`}
+        >
+          {singleButton}
+        </Button>
+      )
+    })
+  }
+
+  return (
+    <div>
+      <img
+        className="All_Top_Image"
+        src="/images/allProductPageSmall.png"
+        alt="Null"
+      />
+      <h1 className="All_Title">OUR WINES</h1>
+      <div className="All_Horizontal">
+        <hr align="center" />
+      </div>
+      <div className="All_Button">{displayButtons(buttonNames)}</div>
+
+      <div className="All_Container">
+        {currentWineList && displayWines(currentWineList)}
+      </div>
+    </div>
+  )
 }
 
 const mapState = state => {
@@ -93,10 +95,4 @@ const mapState = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getWines: () => dispatch(fetchWines())
-  }
-}
-
-export default connect(mapState, mapDispatchToProps)(AllProduct)
+export default connect(mapState)(AllProduct)
