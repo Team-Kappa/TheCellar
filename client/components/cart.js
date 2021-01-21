@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
 import {fetchOrder} from '../store/order'
 import {cartInfo, deleteAnItem} from '../store/cart'
+import Navbar from './navbar'
 
 function Cart(props) {
   const cartState = useSelector(state => state)
@@ -34,11 +35,12 @@ function Cart(props) {
   }, 0)
 
   const deleteClick = async event => {
+    console.log(cartState)
     await dispatch(
       deleteAnItem({
-        userId: cartState.userId,
-        orderId: cartState.id,
-        productId: event.target.id
+        userId: cartState.cart.userId,
+        orderId: cartState.cart.id,
+        productId: Number(event.target.id)
       })
     )
   }
@@ -68,15 +70,9 @@ function Cart(props) {
                     {items.orderDetails.productPrice / 100}
                   </h3>
 
-                  <button type="button" onClick={updateClick}>
-                    -
-                  </button>
                   <h3 className="itemQuantity">
                     {items.orderDetails.productQuantity}
                   </h3>
-                  <button type="button" onClick={updateClick}>
-                    +
-                  </button>
 
                   <button type="button" onClick={deleteClick} id={items.id}>
                     X

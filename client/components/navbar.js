@@ -10,7 +10,6 @@ import PersonIcon from '@material-ui/icons/Person'
 
 const Navbar = ({handleClick, isLoggedIn, quantity}) => (
   <div className="navbar">
-    {console.log('what is this', quantity)}
     <Link to="/">
       <img className="navbarLogo" src="/images/logowhite.png" alt="" />
     </Link>
@@ -30,7 +29,9 @@ const Navbar = ({handleClick, isLoggedIn, quantity}) => (
       <Link style={{textDecoration: 'none'}} to="/cart">
         <div className="headerCart">
           <ShoppingCartIcon />
-          <span className="headerOptionLineTwo headerCartCount" />
+          <span className="headerOptionLineTwo headerCartCount">
+            {quantity}
+          </span>
         </div>
       </Link>
 

@@ -60,11 +60,16 @@ export const postInfo = info => async dispatch => {
 
 export const deleteAnItem = info => async dispatch => {
   try {
+    console.log(info)
     await axios.delete(`/api/orderDetails/`, {
-      userId: info.userId,
-      orderId: info.id,
-      productId: info.wineId
+      data: {
+        userId: info.userId,
+        orderId: info.orderId,
+        productId: info.productId
+      }
     })
+    const res = await axios.get(`/api/orderDetails/${info.userId}`)
+    dispatch(addToCart(res.data))
   } catch (err) {
     console.log(err)
   }

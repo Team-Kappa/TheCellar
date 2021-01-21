@@ -67,18 +67,18 @@ router.put('/:userId/', async (req, res, next) => {
   }
 })
 
-// router.delete('/:userId', async (req, res, next) => {
-//   try {
-//     console.log('what is my backend request', req.body)
-//     // let result = await OrderDetails.findOne({
-//     //   where: {
-//     //     // orderId: req.body.orderId,
-//     //     // wineId: req.body.wineId,
-//     //     // userId: req.body.userId,
-//     //   },
-//     // })
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.delete('/', async (req, res, next) => {
+  try {
+    console.log('what is my backend request', req.body)
+    let result = await OrderDetails.destroy({
+      where: {
+        orderId: req.body.orderId,
+        productId: req.body.productId
+      }
+    })
+    res.json(result)
+  } catch (err) {
+    next(err)
+  }
+})
 module.exports = router

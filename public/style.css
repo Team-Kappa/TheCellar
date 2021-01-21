@@ -256,6 +256,7 @@ hr {
   object-fit: cover;
   display: flex;
   justify-content: center;
+  border-bottom: 3px solid black;
 }
 .itemName {
   display: flex;
