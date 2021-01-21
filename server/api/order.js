@@ -4,8 +4,12 @@ const {Order} = require('../db/models')
 //Add item to order
 router.get('/', async (req, res, next) => {
   try {
-    const order = await Order.findAll()
-    res.json(order)
+    if (req.user) {
+      const order = await Order.findAll()
+      res.json(order)
+    } else {
+      res.status(401).json('User does not have get order access.')
+    }
   } catch (err) {
     next(err)
   }
@@ -13,8 +17,12 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const addOrder = await Order.create(req.body)
-    res.json(addOrder)
+    if (req.user) {
+      const addOrder = await Order.create(req.body)
+      res.json(addOrder)
+    } else {
+      res.status(401).json('User does not have add order access.')
+    }
   } catch (err) {
     next(err)
   }
