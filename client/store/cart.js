@@ -60,7 +60,6 @@ export const postInfo = info => async dispatch => {
 
 export const deleteAnItem = info => async dispatch => {
   try {
-    console.log(info)
     await axios.delete(`/api/orderDetails/`, {
       data: {
         userId: info.userId,

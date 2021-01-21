@@ -52,7 +52,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:userId/', async (req, res, next) => {
   try {
-    console.log('backend req.body', req.body)
     const modifyOrder = await OrderDetails.findOne({
       where: {
         userId: req.params.userId,
@@ -69,7 +68,6 @@ router.put('/:userId/', async (req, res, next) => {
 
 router.delete('/', async (req, res, next) => {
   try {
-    console.log('what is my backend request', req.body)
     let result = await OrderDetails.destroy({
       where: {
         orderId: req.body.orderId,

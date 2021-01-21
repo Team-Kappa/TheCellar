@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button'
 
 function Cart(props) {
   const cartState = useSelector(state => state)
-  console.log('Store data', cartState.cart)
 
   const user = cartState.user
 
@@ -35,7 +34,6 @@ function Cart(props) {
   }, 0)
 
   const deleteClick = async event => {
-    console.log(cartState)
     await dispatch(
       deleteAnItem({
         userId: cartState.cart.userId,
@@ -45,9 +43,6 @@ function Cart(props) {
     )
   }
 
-  const updateClick = async event => {
-    console.log('clicked!')
-  }
   return (
     <>
       <div className="cart">
@@ -76,15 +71,16 @@ function Cart(props) {
                     <h3 className="itemQuantity">
                       {items.orderDetails.productQuantity}
                     </h3>
-                    <div className="All_button">
-                      <Button
+                    <div>
+                      <button
+                        style={{backgroundColor: 'red'}}
                         type="button"
                         onClick={deleteClick}
                         id={items.id}
                         color="secondary"
                       >
                         X
-                      </Button>
+                      </button>
                     </div>
                   </div>
                 </div>

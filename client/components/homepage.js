@@ -9,18 +9,15 @@ import {Container, makeStyles, Link} from '@material-ui/core'
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#fcb89b',
-    // color: '#5b0e2d',
+
     color: 'black',
     fontFamily: 'Lobster Two, cursive',
     paddingTop: '5%',
     paddingBottom: '5%'
   },
   title: {
-    display: 'flex',
-    // justifyContent: 'center',
     paddingBottom: '5%',
-    fontSize: '50px'
-    // textDecoration: 'underline',
+    fontSize: '45px'
   },
   descriptionBox: {
     display: 'flex',
@@ -29,9 +26,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column'
   },
   img: {
-    // '& img': {
-    //   width: '150%',
-    // },
     justifyContent: 'center',
     display: 'flex',
     padding: '0 0 5% 0'

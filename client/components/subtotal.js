@@ -1,5 +1,6 @@
 import React from 'react'
 import CurrencyFormat from 'react-currency-format'
+import {Link} from 'react-router-dom'
 
 function Subtotal(props) {
   return (
@@ -25,7 +26,24 @@ function Subtotal(props) {
         thousandSeparator={true}
         prefix="$"
       />
-      <button> Proceed to Payment </button>
+
+      <Link to="/confirmation">
+        <button
+          type="button"
+          style={{
+            background: '#722620',
+            borderRadius: '3px',
+            width: '100%',
+            height: '30px',
+            border: '1px solid',
+            marginTop: '10px',
+            borderColor: '#5b0e2d',
+            color: '#111'
+          }}
+        >
+          Proceed to Payment
+        </button>
+      </Link>
     </div>
   )
 }
