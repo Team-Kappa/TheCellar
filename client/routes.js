@@ -14,7 +14,8 @@ import {
   ContactUs,
   AddWine,
   NotFound,
-  EditWine
+  EditWine,
+  Confirmation
 } from './components'
 import {me} from './store'
 
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/contact" component={ContactUs} />
+        <Route exact path="/confirmation" component={Confirmation} />
         {isAdmin && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

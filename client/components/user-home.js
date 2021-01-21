@@ -63,7 +63,9 @@ export const UserHome = props => {
   const {admin} = user
   const dispatch = useDispatch()
   const {product} = useSelector(state => state)
+
   const classes = useStyles()
+
   useEffect(() => {
     async function getWines() {
       await dispatch(fetchWines())
