@@ -11,12 +11,11 @@ router.get('/', async (req, res, next) => {
   }
 })
 //GETTING USER ID & SPECIFIED ORDER ID
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId/', async (req, res, next) => {
   try {
     const orders = await Order.findOne({
       where: {
         userId: req.params.userId,
-        // id: req.params.orderId,
         isCompleted: false
       },
       include: [Product]
@@ -45,6 +44,36 @@ router.post('/', async (req, res, next) => {
         productPrice: req.body.productPrice
       }
     })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:userId/', async (req, res, next) => {
+  try {
+    const modifyOrder = await OrderDetails.findOne({
+      where: {
+        userId: req.params.userId,
+        isCompleted: false
+      },
+      include: [Product]
+    })
+    const data = await modifyOrder.getProducts()
+    res.send(await modifyOrder.update(req.body))
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/', async (req, res, next) => {
+  try {
+    let result = await OrderDetails.destroy({
+      where: {
+        orderId: req.body.orderId,
+        productId: req.body.productId
+      }
+    })
+    res.json(result)
   } catch (err) {
     next(err)
   }
