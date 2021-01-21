@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 import {fetchSingleWines} from '../store/product'
 import {me} from '../store/user'
 import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import {itemToCart} from '../store/cart'
+// import axios from 'axios'
+// import {itemToCart} from '../store/cart'
 import {postInfo} from '../store/cart'
 
 function SingleWine(props) {

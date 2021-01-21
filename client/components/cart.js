@@ -2,7 +2,7 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import React, {useState, useEffect} from 'react'
 import Subtotal from './Subtotal'
 import {fetchOrder} from '../store/order'
-import cart, {cartInfo, deleteAnItem} from '../store/cart'
+import {cartInfo, deleteAnItem} from '../store/cart'
 
 function Cart(props) {
   const cartState = useSelector(state => state)
@@ -42,6 +42,10 @@ function Cart(props) {
       })
     )
   }
+
+  const updateClick = async event => {
+    console.log('clicked!')
+  }
   return (
     <>
       <div className="cart">
@@ -63,11 +67,19 @@ function Cart(props) {
                   <h3 className="itemPrice">
                     {items.orderDetails.productPrice / 100}
                   </h3>
+
+                  <button type="button" onClick={updateClick}>
+                    -
+                  </button>
                   <h3 className="itemQuantity">
                     {items.orderDetails.productQuantity}
                   </h3>
+                  <button type="button" onClick={updateClick}>
+                    +
+                  </button>
+
                   <button type="button" onClick={deleteClick} id={items.id}>
-                    Hi
+                    X
                   </button>
                 </div>
               </div>

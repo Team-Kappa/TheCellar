@@ -16,7 +16,6 @@ router.get('/:userId/', async (req, res, next) => {
     const orders = await Order.findOne({
       where: {
         userId: req.params.userId,
-
         isCompleted: false
       },
       include: [Product]
@@ -51,18 +50,35 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/', async (req, res, next) => {
+router.put('/:userId/', async (req, res, next) => {
   try {
-    console.log('what is my backend request', req.params)
-    // let result = await OrderDetails.destroy({
-    //   where: {
-    //     // orderId: req.body.orderId,
-    //     // wineId: req.body.wineId,
-    //     // userId: req.body.userId,
-    //   },
-    // })
+    console.log('backend req.body', req.body)
+    const modifyOrder = await OrderDetails.findOne({
+      where: {
+        userId: req.params.userId,
+        isCompleted: false
+      },
+      include: [Product]
+    })
+    const data = await modifyOrder.getProducts()
+    res.send(await modifyOrder.update(req.body))
   } catch (err) {
     next(err)
   }
 })
+
+// router.delete('/:userId', async (req, res, next) => {
+//   try {
+//     console.log('what is my backend request', req.body)
+//     // let result = await OrderDetails.findOne({
+//     //   where: {
+//     //     // orderId: req.body.orderId,
+//     //     // wineId: req.body.wineId,
+//     //     // userId: req.body.userId,
+//     //   },
+//     // })
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 module.exports = router
