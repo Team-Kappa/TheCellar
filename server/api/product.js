@@ -45,18 +45,6 @@ router.delete('/:wineId', async (req, res, next) => {
   }
 })
 
-// //PUT wine
-// router.put('/:wineId', async (req, res, next) => {
-//   console.log(req.params.wineId)
-//   try {
-//     res.sendStatus(500)
-//     // console.log(req)
-//   } catch (error) {
-//     console.log('hello from back')
-//     next(error)
-//   }
-// })
-
 //PUT wine
 router.put('/:wineId', async (req, res, next) => {
   try {

@@ -60,7 +60,6 @@ const useStyles = makeStyles(() => ({
  */
 export const UserHome = props => {
   const {user} = props
-  console.log(props)
   const {admin} = user
   const dispatch = useDispatch()
   const {product} = useSelector(state => state)
@@ -71,7 +70,6 @@ export const UserHome = props => {
     }
     getWines()
   }, dispatch)
-  console.log('PRODUCT --> ', product)
   const displayWines = wineData => {
     return wineData.map(wine => {
       return (

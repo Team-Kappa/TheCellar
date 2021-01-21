@@ -63,9 +63,17 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // auth and api routes
-  app.use('/auth', require('./auth'))
+  // // auth and api routes
+  // app.use('/api/', function (req, res, next) {
+  //   if(req.user.admin){
+
+  //   }else{
+  //     console.log("nonono")
+  //   }
+
+  // })
   app.use('/api', require('./api'))
+  app.use('/auth', require('./auth'))
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
