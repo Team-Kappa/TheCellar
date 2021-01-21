@@ -9,7 +9,6 @@ import {Container, makeStyles, Link} from '@material-ui/core'
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#fcb89b',
-
     color: 'black',
     fontFamily: 'Lobster Two, cursive',
     paddingTop: '5%',

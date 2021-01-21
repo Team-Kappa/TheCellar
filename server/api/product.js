@@ -24,8 +24,16 @@ router.get('/:wineId', async (req, res, next) => {
 //POST ADD NEW WINE
 router.post('/', async (req, res, next) => {
   try {
-    const wine = await Product.create(req.body)
-    res.status(200).json(wine)
+    if (req.user) {
+      if (req.user.dataValues.admin) {
+        const wine = await Product.create(req.body)
+        res.status(200).json(wine)
+      } else {
+        res.status(401).json('User does not have add wine access.')
+      }
+    } else {
+      res.status(401).json('User does not have add wine access.')
+    }
   } catch (error) {
     next(error)
   }
@@ -34,12 +42,20 @@ router.post('/', async (req, res, next) => {
 //DELETE WINE
 router.delete('/:wineId', async (req, res, next) => {
   try {
-    const wine = await Product.destroy({
-      where: {
-        id: req.params.wineId
+    if (req.user) {
+      if (req.user.dataValues.admin) {
+        const wine = await Product.destroy({
+          where: {
+            id: req.params.wineId
+          }
+        })
+        res.json(wine)
+      } else {
+        res.status(401).json('User does not have delete wine access.')
       }
-    })
-    res.json(wine)
+    } else {
+      res.status(401).json('User does not have delete wine access.')
+    }
   } catch (error) {
     next(error)
   }
@@ -48,8 +64,16 @@ router.delete('/:wineId', async (req, res, next) => {
 //PUT wine
 router.put('/:wineId', async (req, res, next) => {
   try {
-    const wine = await Product.findByPk(req.params.wineId)
-    res.send(await wine.update(req.body))
+    if (req.user) {
+      if (req.user.dataValues.admin) {
+        const wine = await Product.findByPk(req.params.wineId)
+        res.send(await wine.update(req.body))
+      } else {
+        res.status(401).json('User does not have edit wine access.')
+      }
+    } else {
+      res.status(401).json('User does not have edit wine access.')
+    }
   } catch (error) {
     next(error)
   }

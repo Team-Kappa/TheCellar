@@ -72,7 +72,6 @@ export const UserHome = props => {
     }
     getWines()
   }, dispatch)
-
   const displayWines = wineData => {
     return wineData.map(wine => {
       return (

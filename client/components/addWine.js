@@ -157,7 +157,7 @@ const AddWine = () => {
             <MenuItem value="Rose">Rose</MenuItem>
             <MenuItem value="Fruit">Fruit</MenuItem>
           </Select>
-          <FormHelperText classNam e={classes.formElm}>
+          <FormHelperText className={classes.formElm}>
             Type field is required
           </FormHelperText>
         </FormControl>
